@@ -58,7 +58,7 @@ Route::group(['middleware' => ['auth','admin']], function() {
 
 //Main/MainController
 
-Route::get('/homeshop','Main\MainController@index');
+Route::get('/homeshop','Main\MainController@index')->name('Main.index');
 
 Route::get('/categories','Main\MainController@categories');
 
@@ -67,13 +67,20 @@ Route::get('/contactUs','Main\MainController@contactUs');
 Route::get('/vendor','Main\MainController@vendor');
 
 Route::get('/login/show','Main\MainController@login')->name('login.show');
+Route::post('/logins','Auth\LoginController@authenticate');
 
 Route::get('/single-product/{id}','Main\MainController@singleProduct');
 
-Route::get('/cart/{id}','Main\MainController@cart');
+Route::get('/cart','Main\MainController@cart')->middleware('auth');
+
+// Route::get('/addToCart/{id}','Main\MainController@addTocart');
+
+// Route::patch('update-cart', 'Main\MainController@update');
+ 
+// Route::delete('remove-from-cart', 'Main\MainController@remove');
 
 
-// Route::post('/login','Auth\LoginController@authenticate');
+
 
 
 // Main/ProductController

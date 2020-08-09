@@ -66,8 +66,10 @@
 
                     <div class="hearer_icon d-flex">
                           
-                        <a style="padding-top: 10px;" href="cart.html"><i class="fa fa-cart-plus"></i></a>
-
+                        <!-- <a style="padding-top: 10px;" href="/cart"><i class="fa fa-cart-plus"><span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span></i></a> -->
+                        <button type="button" class="btn btn-info" data-toggle="dropdown">
+                             <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
+                       </button>
 
                         <li class="nav-item dropdown">
                          <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"

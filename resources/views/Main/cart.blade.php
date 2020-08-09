@@ -21,178 +21,82 @@
   <!-- breadcrumb start-->
 
   <!--================Cart Area =================-->
-  <section class="cart_area padding_top">
+  <!-- <section class="cart_area padding_top">
     <div class="container">
       <div class="cart_inner">
         <div class="table-responsive">
-          <table class="table">
+          <table id="cart" class="table">
             <thead>
               <tr>
                 <th scope="col">Product</th>
                 <th scope="col">Price</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Total</th>
-                <th scope="col">Remove</th>
+                <th></th>
+                
 
               </tr>
             </thead>
             <tbody>
+
+            <?php $total = 0 ?>
+            
+            @if(session('cart'))
+                @foreach(session('cart') as $id => $details)
+
+            <?php $total += $details['price'] * $details['quantity'] ?>
+
               <tr>
                 <td>
                   <div class="media">
                     <div class="d-flex">
                       <img src="{{asset('Main/img/product/single-product/cart-1.jpg')}}" alt="" />
+                      
                     </div>
                     <div class="media-body">
-                      <p>Minimalistic shop for multipurpose use</p>
+                      <p>{{ $details['name'] }}</p>
                     </div>
                   </div>
                 </td>
                 <td>
-                  <h5>{{$cartProduct->price}}}</h5>
+                  <h5>{{ $details['price'] }}</h5>
                 </td>
-                <td>
+                <!-- <td >
                   <div class="product_count">
-                    <span class="input-number-decrement"> <i class="ti-angle-down"></i></span>
-                    <input class="input-number" type="text" value="1" min="0" max="10">
+                    <span class="input-number-decrement"> <i class="ti-angle-down"></i></span> 
+                    <input class="input-number"  value="{{ $details['quantity'] }}" min="0" max="10" class="form-control quantity">
                     <span class="input-number-increment"> <i class="ti-angle-up"></i></span>
-                  </div>
-                </td>
+                  </div> -->
+                <!-- </td> -->
+                <td data-th="Quantity">
+                        <input type="number" value="{{ $details['quantity'] }}" class="form-control quantity" min="0" max="10"/>
+                    </td>
                 <td>
-                  <h5>$720.00</h5>
+                  <h5>{{ $details['price'] * $details['quantity'] }}</h5>
                 </td>
-                <td>
-                  <i class="btn_3 small fas fa-trash-alt"></i>
-                </td>
+               
+                <td class="actions" data-th="">
+                        <button class="btn btn-info btn-sm update-cart" data-id="{{ $id }}"><i class="fa fa-refresh"></i></button>
+                        <button class="btn btn-danger btn-sm remove-from-cart" data-id="{{ $id }}"><i class="fa fa-trash-o"></i></button>
+                    </td>
+                
               </tr>
-              <tr>
-                <td>
-                  <div class="media">
-                    <div class="d-flex">
-                      <img src="{{asset('Main/img/product/single-product/cart-1.jpg')}}" alt="" />
-                    </div>
-                    <div class="media-body">
-                      <p>Minimalistic shop for multipurpose use</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <h5>$360.00</h5>
-                </td>
-                <td>
-                  <div class="product_count">
-                    <!-- <input type="text" value="1" min="0" max="10" title="Quantity:"
-                      class="input-text qty input-number" />
-                    <button
-                      class="increase input-number-increment items-count" type="button">
-                      <i class="ti-angle-up"></i>
-                    </button>
-                    <button
-                      class="reduced input-number-decrement items-count" type="button">
-                      <i class="ti-angle-down"></i>
-                    </button> -->
-                    <span class="input-number-decrement"> <i class="ti-angle-down"></i></span>
-                    <input class="input-number" type="text" value="1" min="0" max="10">
-                    <span class="input-number-increment"> <i class="ti-angle-up"></i></span>
-                  </div>
-                </td>
-                <td>
-                  <h5>$720.00</h5>
-                </td>
-                <td>
-                  <i class="btn_3 small fas fa-trash-alt"></i>
 
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="media">
-                    <div class="d-flex">
-                      <img src="{{asset('Main/img/product/single-product/cart-1.jpg')}}" alt="" />
-                    </div>
-                    <div class="media-body">
-                      <p>Minimalistic shop for multipurpose use</p>
-                    </div>
-                  </div>
-                </td>
-                <td>
-                  <h5>$360.00</h5>
-                </td>
-                <td>
-                  <div class="product_count">
-                    <span class="input-number-decrement"> <i class="ti-angle-down"></i></span>
-                    <input class="input-number" type="text" value="1" min="0" max="10">
-                    <span class="input-number-increment"> <i class="ti-angle-up"></i></span>
-                  </div>
-                </td>
-                <td>
-                  <h5>$720.00</h5>
-                </td>
-                <td>
-                  <i class="btn_3 small fas fa-trash-alt"></i>
+              @endforeach
+        @endif
 
-                </td>
-              </tr>
-              <tr class="bottom_button">
-                <td>
-                  <!-- <a class="btn_1" href="#">Update Cart</a> -->
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-
-                <td>
-                  <div class="cupon_text float-right">
-                    <a class="btn_1" href="#">Update Cart</a>
-                  </div>
-                </td>
-              </tr>
-              <tr class="shipping_area">
-                <td></td>
-                <td></td>
-                <td></td>
-
-                <td>
-                  <!-- <h5>Shipping</h5> -->
-                </td>
-                <td>
-                  <div class="shipping_box">
-                    <ul class="list">
-                      <li class="active">
-                        <a>Shipping Charge: $2.00</a>
-                      </li>
-                    </ul>
-                    <!-- <h6>
-                      Calculate Shipping
-                      <i class="fa fa-caret-down" aria-hidden="true"></i>
-                    </h6>
-                    <select class="shipping_select">
-                      <option value="1">Bangladesh</option>
-                      <option value="2">India</option>
-                      <option value="4">Pakistan</option>
-                    </select>
-                    <select class="shipping_select section_bg">
-                      <option value="1">Select a State</option>
-                      <option value="2">Select a State</option>
-                      <option value="4">Select a State</option>
-                    </select>
-                    <input type="text" placeholder="Postcode/Zipcode" />
-                    <a class="btn_1" href="#">Update Details</a> -->
-                  </div>
-                </td>
-              </tr>
               <tr>
                 <td></td>
                 <td></td>
                 <td></td>
 
                 <td>
-                  <h5>Subtotal</h5>
+                  <h5>Subtotal :</h5>
                 </td>
                 <td>
-                  <h5>$2160.00</h5>
+                  <h5>{{ $total }}</h5>
                 </td>
-              </tr>
+              </tr> 
 
             </tbody>
           </table>
@@ -202,32 +106,46 @@
           </div>
         </div>
       </div>
-  </section>
+  </section> -->
   <!--================End Cart Area =================-->
 
 
 @endsection
 
 <!-- @section('js')
-    {{--    <script>--}}
-    {{--        let scanner = new Instascan.Scanner(--}}
-    {{--            {--}}
-    {{--                video: document.getElementById('preview'),--}}
-    {{--                mirror: false--}}
-    {{--            }--}}
-    {{--        );--}}
+            <script type="text/javascript">
+            
+            $(".update-cart").click(function (e) {
+                e.preventDefault();
 
-    {{--        scanner.addListener('scan', function(content) {--}}
-    {{--            alert('Escaneou o conteudo: ' + content);--}}
-    {{--            window.open(content, "_blank");--}}
-    {{--        });--}}
-    {{--        Instascan.Camera.getCameras().then(cameras =>--}}
-    {{--        {--}}
-    {{--            if(cameras.length > 0){--}}
-    {{--                scanner.start(cameras[0]);--}}
-    {{--            } else {--}}
-    {{--                console.error("Não existe câmera no dispositivo!");--}}
-    {{--            }--}}
-    {{--        });--}}
-    {{--    </script>--}}
+                var ele = $(this);
+
+                $.ajax({
+                    url: '{{ url('update-cart') }}',
+                    method: "patch",
+                    data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), quantity: ele.parents("tr").find(".quantity").val()},
+                    success: function (response) {
+                        window.location.reload();
+                    }
+                });
+            });
+
+            $(".remove-from-cart").click(function (e) {
+                e.preventDefault();
+
+                var ele = $(this);
+
+                if(confirm("Are you sure")) {
+                    $.ajax({
+                        url: '{{ url('remove-from-cart') }}',
+                        method: "DELETE",
+                        data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id")},
+                        success: function (response) {
+                            window.location.reload();
+                        }
+                    });
+                }
+            });
+
+            </script>
 @endsection -->

@@ -70,18 +70,26 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="/contactUs">Contact us</a>
                                 </li>
-  
+                                
+                                @if(Auth::guest())
                                 <li class="nav-item">
                                     <a class="btn-sm vendorbtn" href="/vendor">Register Now</a>
                                 </li>
+                                
+                                @endif
+                                
                             </ul>
                         </div>
   
                         <div class="hearer_icon d-flex">
-                            <a style="padding-top: 10px;" id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
+                            <!-- <a style="padding-top: 10px;" id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a> -->
   
-                            <a style="padding-top: 10px;" href="cart.html"><i class="fa fa-cart-plus"></i></a>
-  
+                            <!-- <a style="padding-top: 10px;" href="cart.html"><i class="fa fa-cart-plus"></i></a> -->
+                            <button type="button" class="btn btn-info" data-toggle="dropdown">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
+                            </button>
+
+                           
   
                             <li class="nav-item dropdown">
                              <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
@@ -93,9 +101,21 @@
                                  <a class="dropdown-item" href="/login/show"> Account Info</a>
                                  <a class="dropdown-item" href="tracking.html">Orders</a>
                                  <a class="dropdown-item" href="checkout.html">Your Recommendation</a>
-                                 <a class="dropdown-item" href="cart.html">Shopping Cart</a>
+                                 <a class="dropdown-item" href="{{ url('cart') }}">Shopping Cart</a>
                                  <a class="dropdown-item" href="confirmation.html">confirmation</a>
-                                 <a class="dropdown-item" href="elements.html">Sign Out  </a>
+
+                                 @if(Auth::guest())
+                                   <a class="dropdown-item" href="/login/show">Login</a>
+                                 @else
+                                 <a class="dropdown-item" href="{{ route('logout') }}"
+                                         onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                            Sign Out
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                                 @endif
                              </div>
   
                          </li>
@@ -236,7 +256,7 @@
                                             <!-- <h3>{{$product->id}}</h3> -->
                                             <h4>{{$product->name}}</h4>
                                             <h3>{{$product->price}}</h3></a>
-                                            <a href="/cart/{{$product->id}}" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                                            <a href="/addToCart/{{$product->id}}" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -325,8 +345,8 @@
                                         </div>
                                     </div>
                                 </div> -->
-                            </div>
-                        </div>
+                            <!-- </div>
+                        </div> -->
 
 
                         <!-- <div class="single_product_list_slider">
