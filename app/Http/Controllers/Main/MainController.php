@@ -4,7 +4,12 @@ namespace App\Http\Controllers\Main;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
 use App\Model\Product;
+use App\Cart;
+
+use Illuminate\Support\Facades\Redirect;
+// use Illuminate\Http\Client\Request;
 
 class MainController extends Controller
 {
@@ -35,104 +40,29 @@ class MainController extends Controller
         return view('Main.singleProduct',compact('singleProduct'));
     }
 
+    // public function cart(Cart $cartProducts){
+    //     // $cartProduct = Product::where('id',$id)->first();
+    //     // return view('Main.cart',compact('cartProduct'));
+    //     $cartProducts = Cart::all();
+    //     //  dd($cartProducts);
+    //     // $cartProducts->load('products');
+    //     //  dd($cartProducts);
+    //     return view('Main.cart',compact('cartProducts'));
+    // }
+
     public function cart(){
-        // $cartProduct = Product::where('id',$id)->first();
-        // return view('Main.cart',compact('cartProduct'));
-        return view('Main.cart');
-    }
-
-
-    // public function addToCart($id)
-    // {
-    //     $product = Product::find($id);
- 
-    //     if(!$product) {
- 
-    //         abort(404);
- 
-    //     }
- 
-    //     $cart = session()->get('cart');
- 
-    //     // if cart is empty then this the first product
-    //     if(!$cart) {
- 
-    //         $cart = [
-    //                 $id => [
-    //                     "name" => $product->name,
-    //                     "quantity" => 1,
-    //                     "price" => $product->price,
-    //                     "photo" => $product->photo
-    //                 ]
-    //         ];
- 
-    //         session()->put('cart', $cart);
- 
-    //         // return redirect()->back()->with('success', 'Product added to cart successfully!');
-    //         return redirect('/cart')->with('success','Product added to cart successfully!');
-    //     }
- 
-    //     // if cart not empty then check if this product exist then increment quantity
-    //     if(isset($cart[$id])) {
- 
-    //         $cart[$id]['quantity']++;
- 
-    //         session()->put('cart', $cart);
- 
-    //         // return redirect()->back()->with('success', 'Product added to cart successfully!');
-    //         return redirect('/cart')->with('success','Product added to cart successfully!');
- 
-    //     }
- 
-    //     // if item not exist in cart then add to cart with quantity = 1
-    //     $cart[$id] = [
-    //         "name" => $product->name,
-    //         "quantity" => 1,
-    //         "price" => $product->price,
-    //         "photo" => $product->photo
-    //     ];
- 
-    //     session()->put('cart', $cart);
- 
-    //     // return redirect()->back()->with('success', 'Product added to cart successfully!');
-    //     return redirect('/cart')->with('success','Product added to cart successfully!');
-    // }
-
-
-
-    // public function update(Request $request)
-    // {
-    //     if($request->id and $request->quantity)
-    //     {
-    //         $cart = session()->get('cart');
- 
-    //         $cart[$request->id]["quantity"] = $request->quantity;
- 
-    //         session()->put('cart', $cart);
- 
-    //         session()->flash('success', 'Cart updated successfully');
-    //     }
-    // }
- 
-
-
-    // public function remove(Request $request)
-    // {
-    //     if($request->id) {
- 
-    //         $cart = session()->get('cart');
- 
-    //         if(isset($cart[$request->id])) {
- 
-    //             unset($cart[$request->id]);
- 
-    //             session()->put('cart', $cart);
-    //         }
- 
-    //         session()->flash('success', 'Product removed successfully');
-    //     }
-    // }
-
+        //        $items = Cart::where('user_id', auth()->user()->id)->get();
+        
+                $user = User::findOrFail(auth()->user()->id);
+                
+        
+                $id = $user->id;
+                $items = Cart::whereHas('User',function($query) use($id){
+                    $query->where('user_id', $id);
+                })->get();
+                // $total_price = $items->sum('price');
+                return view('Main.cart',compact('items'));
+            }
 
 
     

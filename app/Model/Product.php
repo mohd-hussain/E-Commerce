@@ -4,6 +4,8 @@ namespace App\Model;
 
 use App\Model\Review;
 use Illuminate\Database\Eloquent\Model;
+use App\Cart;
+use App\User;
 
 class Product extends Model
 {
@@ -26,5 +28,9 @@ class Product extends Model
     // {
     //     return round((1 - ($this->discount/100)) * $this->price,2);
     // }
+
+    public function cart(){
+        return $this->belongsTo(Cart::class,'id','product_id');
+    }
 
 }

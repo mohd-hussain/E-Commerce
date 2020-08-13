@@ -24,8 +24,8 @@ Route::get('/', function () {
 //     return view('Admin.dashboard');
 // });
 
-// Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
-// Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
+Route::get('login/facebook', 'Auth\LoginController@redirectToProvider');
+Route::get('login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
 
 Auth::routes();
 
@@ -73,7 +73,7 @@ Route::get('/single-product/{id}','Main\MainController@singleProduct');
 
 Route::get('/cart','Main\MainController@cart')->middleware('auth');
 
-// Route::get('/addToCart/{id}','Main\MainController@addTocart');
+Route::post('/addToCart/','CartController@addToCart');
 
 // Route::patch('update-cart', 'Main\MainController@update');
  

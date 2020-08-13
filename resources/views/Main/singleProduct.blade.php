@@ -64,8 +64,19 @@
                 <input class="input-number" type="text" value="1" min="0" max="10">
                 <span class="number-increment"> <i class="ti-plus"></i></span>
               </div>
-              <a href="/addToCart/{{$singleProduct->id}}" class="btn_3">add to cart</a>
-              <!-- <a href="#" class="like_us"> <i class="ti-heart"></i> </a> -->
+
+              <form id="my_form" action="/addToCart" method="post">
+                  @csrf
+                  <input type="hidden"  value="{{ $singleProduct->id }}" name="product_id" >
+                  <!-- <a href="" class="btn_3">add to cart</a> -->
+                  @if(@auth)
+                  <input type="hidden"  value="{{ auth()->user()->id }}" name="user_id" >
+                  @endif
+                  <button class="btn_3">+addToCart</button>
+                  <!-- <a href="#" class="like_us"> <i class="ti-heart"></i> </a> -->
+              </form>
+
+              
             </div>
           </div>
         </div>

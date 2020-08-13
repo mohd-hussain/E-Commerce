@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Laravel\Socialite\Facades\Socialite;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -51,6 +53,35 @@ class LoginController extends Controller
         else
             return redirect::back()->message('success','Email Or Password Incorrect!');
     }
+
+
+    public function redirectToProvider()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+
+    public function handleProviderCallback()
+    {
+        $facebook = Socialite::driver('facebook')->user();
+
+        $findUser = User::where('email', $facebook->email)->first();
+        if($findUser){
+            Auth::login($findUser);
+            return redirect::route('Main.index')->with('success','Successfully Logged in');
+        }
+        else{
+            $user = New User;
+            $user->name = $facebook->name;
+            $user->email = $facebook->email;
+            // dd($facebook->email);
+            $user->password = bcrypt(123456);
+            $user->save();
+            Auth::login($user);
+            return redirect::route('Main.index')->with('success','Successfully Logged in');
+        }
+    }
+
 
     /**
      * Create a new controller instance.
