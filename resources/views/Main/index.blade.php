@@ -101,7 +101,7 @@
                                  <a class="dropdown-item" href="/login/show"> Account Info</a>
                                  <a class="dropdown-item" href="tracking.html">Orders</a>
                                  <a class="dropdown-item" href="checkout.html">Your Recommendation</a>
-                                 <a class="dropdown-item" href="{{ url('cart') }}">Shopping Cart</a>
+                                 <a class="dropdown-item" href="/cart">Shopping Cart</a>
                                  <a class="dropdown-item" href="confirmation.html">confirmation</a>
 
                                  @if(Auth::guest())
@@ -256,7 +256,17 @@
                                             <!-- <h3>{{$product->id}}</h3> -->
                                             <h4>{{$product->name}}</h4>
                                             <h3>{{$product->price}}</h3></a>
-                                            <a href="/addToCart/{{$product->id}}" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                                            <!-- <a href="/addToCart/{{$product->id}}" class="add_cart">+ add to cart<i class="ti-heart"></i></a> -->
+                                            <form id="my_form" action="/addToCart" method="post">
+                                                @csrf
+                                                <input type="hidden"  value="{{ $product->id }}" name="product_id" >
+                                                <!-- <a href="" class="btn_3">add to cart</a> -->
+                                                @if(@auth)
+                                                <input type="hidden"  value="{{ auth()->user()->id }}" name="user_id" >
+                                                @endif
+                                                <button class="btn_3">+addToCart</button>
+                                                
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

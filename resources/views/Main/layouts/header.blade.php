@@ -58,9 +58,12 @@
                                 <a class="nav-link" href="/contactUs">Contact us</a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="btn-sm vendorbtn" href="/vendor">Register Now</a>
-                            </li>
+                             @if(Auth::guest())
+                                <li class="nav-item">
+                                    <a class="btn-sm vendorbtn" href="/vendor">Register Now</a>
+                                </li>
+                                
+                                @endif
                         </ul>
                     </div>
 
@@ -81,7 +84,19 @@
                              <a class="dropdown-item" href="/login/show"> Account Info</a>
                              <a class="dropdown-item" href="tracking.html">Orders</a>
                              <a class="dropdown-item" href="cart.html">Shopping Cart</a>
-                             <a class="dropdown-item" href="elements.html">Sign Out  </a>
+                             <!-- <a class="dropdown-item" href="elements.html">Sign Out  </a> -->
+                             @if(Auth::guest())
+                                   <a class="dropdown-item" href="/login/show">Login</a>
+                                 @else
+                                 <a class="dropdown-item" href="{{ route('logout') }}"
+                                         onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                            Sign Out
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                                 @endif
                          </div>
 
                      </li>

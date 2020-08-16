@@ -44,7 +44,7 @@
             
             @foreach($items as $item)
 
-                  <?php $total += $item['price']  ?>
+              <?php $total += $item->price;  ?>               
                 
               <tr>
                 <td>
@@ -67,13 +67,11 @@
                 <td >
                   <div class="product_count">
                     <span class="input-number-decrement"> <i class="ti-angle-down"></i></span> 
-                     <input class="input-number"  value="{{ $item->quantity }}" min="0" max="10" class="form-control quantity"> 
+                     <input class="input-number"  value="" min="0" max="10" class="form-control quantity"> 
                     <span class="input-number-increment"> <i class="ti-angle-up"></i></span>
                   </div> 
                  </td>
-                <!-- <td data-th="Quantity">
-                        <input type="number" value="{{ $item->quantity}}" class="form-control quantity" min="0" max="10"/>
-                    </td>-->
+                
                 <td> 
                   <h5>{{ $item->price  }}</h5>
                   
@@ -81,8 +79,23 @@
                 </td>
                
                 <td class="actions" data-th="">
-                        <button class="btn btn-info btn-sm update-cart" data-id=""><i class="fa fa-refresh"></i></button>
-                        <button class="btn btn-danger btn-sm remove-from-cart" data-id=""><i class="fa fa-trash-o"></i></button>
+                       <form action="/update/{{$item->id}}" method="post">
+                            @csrf
+                            @method('PATCH')
+                            <button class="btn btn-info btn-sm " data-id=""><i class="fa fa-refresh"></i></button>
+                        </form>
+                        
+                        <form action="/deleteFromCart/{{$item->id}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <!-- @if(!Auth::guest()) -->
+                              @if(@auth)
+                                <input type="hidden"  value="{{ auth()->user()->id }}" name="user_id" >
+                              @endif
+                            <!-- @endif -->
+                            <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
+                        </form>
+
                     </td>
                 
               </tr>

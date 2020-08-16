@@ -46,8 +46,25 @@ class CartController extends Controller
                 $cart->product_id = $product->id;
                 $cart->user_id = $user->id;
                 $cart->save();
-                return redirect::back()->with('success','Added to Cart');
+                return redirect('/cart')->with('success','Added to Cart');
            }
+
+
+        public function deleteFromCart(Request $request, $id){
+            // $cartProduct = Cart::where('product_id',$id);
+            // $user= User::find(request('user_id'));
+
+            // if(auth()->user()->id !== $user->id){
+            //     return redirect('/cart')->with('danger','Unauthorised Page');
+            // }
+
+            // $cartProduct->delete();
+            // return redirect('/cart')->with('success','Remove From  Cart');
+            $item = Cart::find($id);
+            $user = User::find(auth()->user()->id);
+            $user->carts()->delete($item);
+            return redirect('/cart')->with('success','Remove From  Cart');
+        }
    
 
     /**

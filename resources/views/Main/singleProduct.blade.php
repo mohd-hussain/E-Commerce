@@ -66,7 +66,7 @@
               </div>
 
               <form id="my_form" action="/addToCart" method="post">
-                  @csrf
+                  {{ csrf_field() }}
                   <input type="hidden"  value="{{ $singleProduct->id }}" name="product_id" >
                   <!-- <a href="" class="btn_3">add to cart</a> -->
                   @if(@auth)

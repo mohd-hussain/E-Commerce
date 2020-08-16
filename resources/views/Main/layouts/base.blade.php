@@ -49,6 +49,7 @@
 <!-- Header part end-->
 <main>
     @yield('content')
+    @include('Main.layouts.message')
 </main>
 <!--::footer_part start::-->
 @include('Main.layouts.footer')

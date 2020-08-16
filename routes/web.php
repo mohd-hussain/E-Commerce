@@ -77,7 +77,7 @@ Route::post('/addToCart/','CartController@addToCart');
 
 // Route::patch('update-cart', 'Main\MainController@update');
  
-// Route::delete('remove-from-cart', 'Main\MainController@remove');
+Route::delete('/deleteFromCart/{id}/','CartController@deleteFromCart');
 
 
 
