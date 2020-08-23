@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->integer('stock');
             $table->integer('discount');
             $table->string('product_image');
-            $table->integer('user_id')->unsigned()->index();
+            // $table->integer('user_id')->unsigned()->index();
             $table->timestamps();
         });
     }

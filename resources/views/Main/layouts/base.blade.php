@@ -47,9 +47,11 @@
 <!--::header part start::-->
 @include('Main.layouts.header')
 <!-- Header part end-->
+ 
 <main>
+<!-- @include('Main.layouts.message')  -->
     @yield('content')
-    @include('Main.layouts.message')
+    
 </main>
 <!--::footer_part start::-->
 @include('Main.layouts.footer')

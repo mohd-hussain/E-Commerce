@@ -251,20 +251,13 @@
                             @foreach($products as $product)   
                                 <div class="col-lg-3 col-sm-6">
                                     <div class="single_product_item">
-                                        <a href="/single-product/{{$product->id}}"><img src="{{asset('Main/img/product/product_4.png')}}" alt="">                                     
+                                        <a href="/single-product/{{$product->id}}"><img src="/storage/product_images/{{$product->product_image}}" alt="">                                     
                                         <div class="single_product_text">
                                             <!-- <h3>{{$product->id}}</h3> -->
                                             <h4>{{$product->name}}</h4>
                                             <h3>{{$product->price}}</h3></a>
-                                            <!-- <a href="/addToCart/{{$product->id}}" class="add_cart">+ add to cart<i class="ti-heart"></i></a> -->
-                                            <form id="my_form" action="/addToCart" method="post">
-                                                @csrf
-                                                <input type="hidden"  value="{{ $product->id }}" name="product_id" >
-                                                <!-- <a href="" class="btn_3">add to cart</a> -->
-                                                @if(@auth)
-                                                <input type="hidden"  value="{{ auth()->user()->id }}" name="user_id" >
-                                                @endif
-                                                <button class="btn_3">+addToCart</button>
+                                            <a href="" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
+                                           
                                                 
                                             </form>
                                         </div>

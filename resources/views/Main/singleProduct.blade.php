@@ -27,8 +27,8 @@
         <div class="col-lg-7 col-xl-7">
           <div class="product_slider_img">
             <div id="vertical">
-              <div src="{{asset('Main/img/product/single-product/product_1.png')}}">
-                <img src="{{asset('Main/img/product/single-product/product_1.png')}}" />
+              <div src="/storage/product_images/{{$singleProduct->product_image}}">
+                <img src="/storage/product_images/{{$singleProduct->product_image}}"/>
               </div>
               <!-- <div src="{{asset('Main/img/product/single-product/product_1.png')}}">
                 <img src="{{asset('Main/img/product/single-product/product_1.png')}}" />

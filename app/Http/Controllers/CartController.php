@@ -50,6 +50,11 @@ class CartController extends Controller
            }
 
 
+           public function updateCart($id){
+               
+           }
+
+
         public function deleteFromCart(Request $request, $id){
             // $cartProduct = Cart::where('product_id',$id);
             // $user= User::find(request('user_id'));
@@ -60,9 +65,15 @@ class CartController extends Controller
 
             // $cartProduct->delete();
             // return redirect('/cart')->with('success','Remove From  Cart');
-            $item = Cart::find($id);
+            // $cartProduct = Cart::where('product_id',$id)->where('user_id',auth()->user()->id);
+            $cartProduct = Cart::where('product_id',$id);
+
+            // dd($cartProduct);
             $user = User::find(auth()->user()->id);
-            $user->carts()->delete($item);
+            // if(auth()->user()->id !== $cartProduct->user_id){
+            //     return redirect('/cart')->with('danger','Unauthorised Page');
+            // }
+            $user->carts()->delete($cartProduct);
             return redirect('/cart')->with('success','Remove From  Cart');
         }
    

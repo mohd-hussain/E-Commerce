@@ -14,31 +14,43 @@ use Illuminate\Support\Facades\Redirect;
 
 class MainController extends Controller
 {
-    public function index(){
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function index()
+    {
         $products = Product::all();
-        return view('Main.index',compact('products'));
+        return view('Main.index', compact('products'));
     }
 
-    public function categories(){
-        return view ('Main.categories');
+    public function categories()
+    {
+        return view('Main.categories');
     }
 
-    public function contactUs(){
-        return view ('Main.contact');
+    public function contactUs()
+    {
+        return view('Main.contact');
     }
 
-    public function vendor(){
-        return view ('Main.vendorSignup');
+    public function vendor()
+    {
+        return view('Main.vendorSignup');
     }
 
-    public function login(){
-        return view ('Main.login');
+    public function login()
+    {
+        return view('Main.login');
     }
 
-    public function singleProduct(Request $request, $productId){
-        $singleProduct = Product::where('id',$productId)->first();
+    public function singleProduct(Request $request, $productId)
+    {
+        $singleProduct = Product::where('id', $productId)->first();
         // echo $singleProduct->name ;
-        return view('Main.singleProduct',compact('singleProduct'));
+        return view('Main.singleProduct', compact('singleProduct'));
     }
 
     // public function cart(Cart $cartProducts){
@@ -52,35 +64,66 @@ class MainController extends Controller
     // }
 
     // public function cart(){
-    //            $items = Cart::where('user_id', auth()->user()->id)->get();
-    //            dd($items);
+
+       
+
+    //         //    $items = Cart::where('user_id', auth()->user()->id)
+    //         //                 // ->where->('product_id',)
+    //         //                 ->get();
+
+    //         //                 $items->load('products');
+
+            
+
+                            
+
+    //         //    dd($items);
+
+                
         
     //             $user = User::findOrFail(auth()->user()->id);
                 
         
     //             $id = $user->id;
-    //             $items = Product::where('User',function($query) use($id){
+    //             $items = Product::whereHas('User',function($query) use($id){
     //                 $query->where('user_id', $id);
     //             })->get();
     //             // $total_price = $items->sum('price');
     //             return view('Main.cart',compact('items'));
     // }
 
-        public function cart(){
+    public function cart()
+    {
+               
+        $user = User::findOrFail(auth()->user()->id);
+        $userId = $user->id;
+        // dd($userId);
 
-                $items = DB::table('products')
-                    ->whereExists(function ($query) {
-                    $query->select(DB::raw(1))
-                            ->from('carts')
-                            ->whereRaw('carts.product_id = products.id')
-                            ->whereRaw('carts.user_id = products.user_id');;
-                    })
-                        ->get();
+        $items = Product::whereExists(function ($query) use ($userId) {
+            $query->select(DB::raw(1))
+                ->from('carts')
+                ->whereRaw('carts.product_id = products.id')
+                ->whereRaw('carts.user_id', $userId);
+            
+            })->get();
 
-                        // dd($product);
-                        return view('Main.cart',compact('items'));
-                }
+            // print_r($items);
+
+            // dd($items);
+
+    //             ->whereExists(function ($query) {
+    //                 $query->select(DB::raw(1))
+    //                     ->from('users')
+    //                     ->whereRaw('users.id = products.user_id');
+    //             });
+
+        // })
+        //     ->get();
 
 
-    
+        return view('Main.cart', compact('items'));
+    }
+
+
+
 }

@@ -58,7 +58,7 @@
             </a>
           </li>
           <li class="{{ 'products-all' == request()->path() ? 'active' : '' }}">
-            <a href="/products-all">
+            <a href="./products-all">
               <i class="now-ui-icons ui-1_bell-53"></i>
               <p>Products</p>
             </a>
@@ -189,7 +189,7 @@
             <ul>
               <li>
                 <a href="#">
-                  Creative Tim
+                  Mohammed Hussain
                 </a>
               </li>
               <li>
@@ -198,7 +198,7 @@
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="https://www.github.com/mohd-hussain">
                   Blog
                 </a>
               </li>

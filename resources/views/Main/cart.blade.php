@@ -19,15 +19,17 @@
     </div>
   </section>
   <!-- breadcrumb start-->
-
+  @include('Main.layouts.message') 
   <!--================Cart Area =================-->
   <section class="cart_area padding_top">
     <div class="container">
       <div class="cart_inner">
+      
         <div class="table-responsive">
           <table id="" class="table">
             <thead>
               <tr>
+                <th scope="col">Product Image</th> 
                 <th scope="col">Product</th>
                 <th scope="col">Price</th>
                 <th scope="col">Quantity</th>
@@ -50,11 +52,14 @@
                 <td>
                   <div class="media">
                     <div class="d-flex">
-                      <img src="{{asset('Main/img/product/single-product/cart-1.jpg')}}" alt="" />
+                      <img src="/storage/product_images/{{$item->product_image}}" alt="" height="100px"/>
+                      
                       
                     </div>
+                  </td> 
+                  <td>
                     <div class="media-body">
-                      <p>{{ $item->name }}</p>
+                      <p>{{ $item->detail }}</p>
                      
 
                     </div>
@@ -79,7 +84,7 @@
                 </td>
                
                 <td class="actions" data-th="">
-                       <form action="/update/{{$item->id}}" method="post">
+                       <form action="/updateCart/{{$item->id}}" method="post">
                             @csrf
                             @method('PATCH')
                             <button class="btn btn-info btn-sm " data-id=""><i class="fa fa-refresh"></i></button>
@@ -88,11 +93,7 @@
                         <form action="/deleteFromCart/{{$item->id}}" method="post">
                             @csrf
                             @method('DELETE')
-                            <!-- @if(!Auth::guest()) -->
-                              @if(@auth)
-                                <input type="hidden"  value="{{ auth()->user()->id }}" name="user_id" >
-                              @endif
-                            <!-- @endif -->
+                           
                             <button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>
                         </form>
 
@@ -122,6 +123,7 @@
             <a class="btn_1" href="index.html">Continue Shopping</a>
             <a class="btn_1 checkout_btn_1" href="#">Proceed to checkout</a>
           </div>
+             
         </div>
       </div>
   </section> 

@@ -126,7 +126,7 @@
                         <td>{{ $product->stock }}</td>
                         <td>{{ $product->discount }}%</td>
                         <td>
-                               {{ $product->product_image }}
+                              <img src="/storage/product_images/{{$product->product_image}}" alt="" width="100" height="100"> 
 
                         </td>
                         <td> 

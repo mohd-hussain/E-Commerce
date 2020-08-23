@@ -74,7 +74,7 @@ class ProductController extends Controller
         $product->stock = $request->stock;
         $product->discount = $request->discount;
         $product->product_image = $fileNameToStore;
-        $product->user_id = auth()->user()->id;
+        // $product->user_id = auth()->user()->id;
 
         $product->save();
         
@@ -114,12 +114,44 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request,[
+            'name' => 'required|max:255',
+            'detail' => 'required',
+            'price' => 'required',
+            'stock' => 'required',
+            'discount' => 'required',
+            'product_image' => 'image|nullable|max:1999',
+
+        ]);
+
+        if($request->hasFile('product_image')){
+            //Get filename with the extension
+            $filenameWithExt = $request->file('product_image')->getClientOriginalName();
+            //Get Just filename
+            $filename = pathinfo($filenameWithExt,PATHINFO_FILENAME);
+            //Get just Ext
+            $extention = $request->file('product_image')->getClientOriginalExtension();
+            //Filename to store
+            $fileNameToStore = $filename.'_'.time().'.'.$extention;
+            //Upload Image
+            $path = $request->file('product_image')->storeAs('public/product_images',$fileNameToStore);
+        }else{
+            $fileNameToStore = 'noimage.jpg';
+        }
         
         $product = Product::findOrFail($id);
-        $product->update($request->all());
+
+        $product->name = $request->name;
+        $product->detail = $request->detail;
+        $product->price = $request->price;
+        $product->stock = $request->stock;
+        $product->discount = $request->discount;
+        $product->product_image = $fileNameToStore;
+
+        $product->update();
         
 
-        return redirect('/products-all')->with('success','Your Data is Updated is Succesfully');
+        return redirect('/products-all')->with('success','Your Data is Updated Succesfully');
     }
 
     /**

@@ -75,7 +75,7 @@ Route::get('/cart','Main\MainController@cart')->middleware('auth');
 
 Route::post('/addToCart/','CartController@addToCart');
 
-// Route::patch('update-cart', 'Main\MainController@update');
+Route::patch('updateCart/{id}/', 'CartController@updateCart');
  
 Route::delete('/deleteFromCart/{id}/','CartController@deleteFromCart');
 

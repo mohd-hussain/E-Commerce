@@ -44,10 +44,10 @@
                                         <label>Discount:</label>
                                         <input type="integer" name="discount" class="form-control" value="{{$product->discount}}">
                                     </div>
-                                    <!-- <div class="form-group">
+                                    <div class="form-group">
                                         <label>Product Image:</label>
                                         <input type="file" name="product_image" class="form-control" value="{{$product->product_image}}">
-                                    </div> -->
+                                    </div>
     
                                     <button type="submit" class="btn btn-success">Update</button>
                                     <a href="/products-all" class="btn btn-danger">Cancel</a>
