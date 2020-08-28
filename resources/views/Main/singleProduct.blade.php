@@ -21,27 +21,31 @@
   <!--================End Home Banner Area =================-->
 
   <!--================Single Product Area =================-->
-  <div class="product_image_area section_padding">
+    <!--================End Single Product Area =================-->
+    <div class="product_image_area section_padding">
     <div class="container">
       <div class="row s_product_inner justify-content-between">
         <div class="col-lg-7 col-xl-7">
           <div class="product_slider_img">
             <div id="vertical">
-              <div src="/storage/product_images/{{$singleProduct->product_image}}">
+
+              <div data-thumb="/storage/product_images/{{$singleProduct->product_image}}">
                 <img src="/storage/product_images/{{$singleProduct->product_image}}"/>
               </div>
-              <!-- <div src="{{asset('Main/img/product/single-product/product_1.png')}}">
-                <img src="{{asset('Main/img/product/single-product/product_1.png')}}" />
+              <div data-thumb="/storage/product_images/{{$singleProduct->product_image}}">
+                <img src="/storage/product_images/{{$singleProduct->product_image}}"/>
               </div>
-              <div data-thumb="{{asset('Main/img/product/single-product/product_1.png')}}">
-                <img src="{{asset('Main/img/product/single-product/product_1.png')}}" />
+              <div data-thumb="/storage/product_images/{{$singleProduct->product_image}}">
+                <img src="/storage/product_images/{{$singleProduct->product_image}}"/>
               </div>
-              <div data-thumb="{{asset('Main/img/product/single-product/product_1.png')}}">
-                <img src="{{asset('Main/img/product/single-product/product_1.png')}}" />
-              </div> -->
+              <div data-thumb="/storage/product_images/{{$singleProduct->product_image}}">
+                <img src="/storage/product_images/{{$singleProduct->product_image}}"/>
+              </div>
+
             </div>
           </div>
         </div>
+
         <div class="col-lg-5 col-xl-4">
           <div class="s_product_text">
             <h3>{{ $singleProduct->name }}</h3>
@@ -59,11 +63,12 @@
             {{ $singleProduct->detail }}
             </p>
             <div class="card_area d-flex justify-content-between align-items-center">
-              <div class="product_count">
+              <!-- <div class="product_count">
                 <span class="inumber-decrement"> <i class="ti-minus"></i></span>
                 <input class="input-number" type="text" value="1" min="0" max="10">
                 <span class="number-increment"> <i class="ti-plus"></i></span>
-              </div>
+              </div> -->
+              
 
               <form id="my_form" action="/addToCart" method="post">
                   {{ csrf_field() }}
@@ -80,11 +85,10 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
-  <!--================End Single Product Area =================-->
-
   <!--================Product Description Area =================-->
   <section class="product_description_area">
     <div class="container">

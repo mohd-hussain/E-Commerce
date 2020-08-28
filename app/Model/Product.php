@@ -9,15 +9,16 @@ use App\User;
 
 class Product extends Model
 {
+    protected $table = 'products';
 
     protected $fillable = [
         'name','detail','price','stock','discount','product_image',
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
     
     public function reviews(){
 
@@ -30,7 +31,7 @@ class Product extends Model
     // }
 
     public function carts(){
-        return $this->belongsToMany(Cart::class);
+        return $this->belongsTo(Cart::class);
         // $abc =  $this->belongsTo(Cart::class);
         // dd($abc);
     }

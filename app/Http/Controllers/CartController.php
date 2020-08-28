@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Model\Product;
 use Illuminate\Support\Facades\Redirect;
 use App\User;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -42,20 +43,34 @@ class CartController extends Controller
         public function addToCart(Request $request){
             $product= Product::find(request('product_id'));
             $user= User::find(request('user_id'));
-                $cart = new Cart();
-                $cart->product_id = $product->id;
-                $cart->user_id = $user->id;
-                $cart->save();
-                return redirect('/cart')->with('success','Added to Cart');
+
+            $cart = new Cart();
+                    $cart->product_id = $product->id;
+                    $cart->user_id = $user->id;
+                    $cart->save();
+                    return redirect('/cart')->with('success','Added to Cart');
+
+            // $cart = Cart::all();
+            // foreach($cart as $cartPro){
+            //     if(($cartPro->product_id == $product->id) && ($cartPro->user_id == $user->id)){
+            //        echo 'Product already exits';
+            //     }
+            //     else{
+            //         $cart = new Cart();
+            //         $cart->product_id = $product->id;
+            //         $cart->user_id = $user->id;
+            //         $cart->save();
+            //         return redirect('/cart')->with('success','Added to Cart');
+            //    }
+            // }
+                
            }
 
 
-           public function updateCart($id){
-               
-           }
+          
 
 
-        public function deleteFromCart(Request $request, $id){
+        public function deleteFromCart($id){
             // $cartProduct = Cart::where('product_id',$id);
             // $user= User::find(request('user_id'));
 
@@ -66,14 +81,15 @@ class CartController extends Controller
             // $cartProduct->delete();
             // return redirect('/cart')->with('success','Remove From  Cart');
             // $cartProduct = Cart::where('product_id',$id)->where('user_id',auth()->user()->id);
-            $cartProduct = Cart::where('product_id',$id);
+            $cartProduct = Cart::find($id);
+            $cartProduct->delete();
 
             // dd($cartProduct);
-            $user = User::find(auth()->user()->id);
+            // $user = User::find(auth()->user()->id);
             // if(auth()->user()->id !== $cartProduct->user_id){
             //     return redirect('/cart')->with('danger','Unauthorised Page');
             // }
-            $user->carts()->delete($cartProduct);
+            // $user->delete($cartProduct);
             return redirect('/cart')->with('success','Remove From  Cart');
         }
    
@@ -107,8 +123,14 @@ class CartController extends Controller
      * @param  \App\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cart $cart)
+    public function updateCartQuantity($id,$quantity)
     {
+        DB::table('carts')->where('id',$id)->increment('quantity',$quantity);
+        return redirect('/cart')->with('success','update  Cart');
+
+        // echo $id;
+        // echo '<br>';
+        // echo $quantity;
         //
     }
 

@@ -29,12 +29,13 @@
           <table id="" class="table">
             <thead>
               <tr>
-                <th scope="col">Product Image</th> 
-                <th scope="col">Product</th>
+                <th scope="col">Product Image</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Product Detail</th>
                 <th scope="col">Price</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Total</th>
-                <th></th>
+                <!-- <th >Action</th> -->
                 
 
               </tr>
@@ -44,51 +45,67 @@
             <?php $total = 0 ?>
             
             
-            @foreach($items as $item)
+            @foreach($userCartItems as $item)
 
-              <?php $total += $item->price;  ?>               
+              @foreach($item->products as $product)
+
+              <?php $total += $product->price * $item->quantity;  ?>               
                 
               <tr>
                 <td>
                   <div class="media">
                     <div class="d-flex">
-                      <img src="/storage/product_images/{{$item->product_image}}" alt="" height="100px"/>
-                      
-                      
+                      <img src="/storage/product_images/{{$product->product_image}}" alt="" height="100px"/> 
                     </div>
                   </td> 
+
                   <td>
                     <div class="media-body">
-                      <p>{{ $item->detail }}</p>
-                     
-
+                      <p>{{ $product->name }}</p>
                     </div>
-                  </div>
-                </td>
-                <td>
-                  <h5>{{ $item->price }}</h5>
+                  </td>
                   
+
+                  <td>
+                    <div class="media-body">
+                      <p>{{ $product->detail }}</p>
+                    </div>
+                  </td>
+
+                
+                <td>
+                  <h5>{{ $product->price }}</h5>     
                 </td>
                 <td >
+                  <!-- <div class="card_area d-flex justify-content-between align-items-center"> -->
                   <div class="product_count">
-                    <span class="input-number-decrement"> <i class="ti-angle-down"></i></span> 
-                     <input class="input-number"  value="" min="0" max="10" class="form-control quantity"> 
-                    <span class="input-number-increment"> <i class="ti-angle-up"></i></span>
+
+                    @if($item->quantity > 1)
+                    <a href="{{url('/updateCartQuantity/'.$item->id.'/-1')}}"><span class="input-number-decrement"><i class="ti-minus"></i></span> </a>
+                    @endif
+                    
+                    <input type="text" class="input-number"  value="{{$item->quantity}}" min="1" max="10" class="form-control" readonly> 
+                     
+                     @if($item->quantity < $product->stock)
+                    <a href="{{url('/updateCartQuantity/'.$item->id.'/1')}}"><span class="input-number-increment"> <i class="ti-plus"></i></span> </a>
+                     @endif
+
                   </div> 
-                 </td>
+                  <!-- </div> -->
+                </td>
                 
                 <td> 
-                  <h5>{{ $item->price  }}</h5>
+                  <h5>{{ $product->price * $item->quantity }}</h5>
                   
 
                 </td>
                
                 <td class="actions" data-th="">
-                       <form action="/updateCart/{{$item->id}}" method="post">
+                       <!-- <form action="/updateCart/{{$item->id}}/{{$item->quantity}}" method="post">
                             @csrf
                             @method('PATCH')
                             <button class="btn btn-info btn-sm " data-id=""><i class="fa fa-refresh"></i></button>
-                        </form>
+                        </form> -->
                         
                         <form action="/deleteFromCart/{{$item->id}}" method="post">
                             @csrf
@@ -100,11 +117,13 @@
                     </td>
                 
               </tr>
-
+              @endforeach
               @endforeach
         
 
               <tr>
+                <td></td>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>

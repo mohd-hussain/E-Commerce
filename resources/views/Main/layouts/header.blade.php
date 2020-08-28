@@ -69,12 +69,12 @@
 
                     <div class="hearer_icon d-flex">
                           
-                        <!-- <a style="padding-top: 10px;" href="/cart"><i class="fa fa-cart-plus"><span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span></i></a> -->
-                        <button type="button" class="btn btn-info" data-toggle="dropdown">
+                        <a style="padding-top: 10px;" href="/cart"><i class="fa fa-cart-plus">({{ $cartCount }})</i></a>
+                        <!-- <button type="button" class="btn btn-info" data-toggle="dropdown">
                              <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
-                       </button>
+                       </button> -->
 
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" style="list-style:none";>
                          <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
                              role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                              <i style="padding-top: 5px;" class="fas fa-user-circle"></i>

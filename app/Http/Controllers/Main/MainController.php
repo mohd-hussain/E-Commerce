@@ -48,8 +48,12 @@ class MainController extends Controller
 
     public function singleProduct(Request $request, $productId)
     {
+        // $user = User::find(auth()->user()->id);
+        // $userId = $user->id;
         $singleProduct = Product::where('id', $productId)->first();
-        // echo $singleProduct->name ;
+        // $singleCartProduct = Cart::where('user_id',$userId)->where('product_id',$productId)->first();
+
+        // dd($singleCartProduct->id);
         return view('Main.singleProduct', compact('singleProduct'));
     }
 
@@ -63,67 +67,74 @@ class MainController extends Controller
     //     return view('Main.cart',compact('cartProducts'));
     // }
 
-    // public function cart(){
+    public function cart(){
 
-       
+        // dd($cart);
+        $userCartItems = User::find(auth()->user()->id)->carts;
+        // dd($userCartItems);
+        $userCartItems->load('products');
+        // dd($userCartItems);       
+         return view('Main.cart',compact('userCartItems'));
 
-    //         //    $items = Cart::where('user_id', auth()->user()->id)
-    //         //                 // ->where->('product_id',)
-    //         //                 ->get();
+        // foreach($userCartItems as $item){
+        //     foreach($item->products as $product){
+        //         echo $product->name;
+        //     }
+        // }
 
-    //         //                 $items->load('products');
-
-            
-
-                            
-
-    //         //    dd($items);
-
-                
-        
-    //             $user = User::findOrFail(auth()->user()->id);
-                
-        
-    //             $id = $user->id;
-    //             $items = Product::whereHas('User',function($query) use($id){
-    //                 $query->where('user_id', $id);
-    //             })->get();
-    //             // $total_price = $items->sum('price');
-    //             return view('Main.cart',compact('items'));
-    // }
-
-    public function cart()
-    {
-               
-        $user = User::findOrFail(auth()->user()->id);
-        $userId = $user->id;
-        // dd($userId);
-
-        $items = Product::whereExists(function ($query) use ($userId) {
-            $query->select(DB::raw(1))
-                ->from('carts')
-                ->whereRaw('carts.product_id = products.id')
-                ->whereRaw('carts.user_id', $userId);
-            
-            })->get();
-
-            // print_r($items);
-
-            // dd($items);
-
-    //             ->whereExists(function ($query) {
-    //                 $query->select(DB::raw(1))
-    //                     ->from('users')
-    //                     ->whereRaw('users.id = products.user_id');
-    //             });
-
-        // })
-        //     ->get();
-
-
-        return view('Main.cart', compact('items'));
     }
 
+
+    // public function cart()
+    // {
+               
+    //     $user = User::findOrFail(auth()->user()->id);
+    //     $userId = $user->id;
+    //     // dd($userId);
+
+    //     $items = Product::whereExists(function ($query) use ($userId) {
+    //         $query->select(DB::raw(1))
+    //             ->from('carts')
+    //             ->whereRaw('carts.product_id = products.id');
+
+    //             // $query->select(DB::raw(1))
+    //             // ->from('carts')
+    //             // ->whereRaw('carts.user_id', $userId);
+            
+    //         })->get();
+
+    //         // print_r($items);
+
+    //         dd($items);
+
+    // //             ->whereExists(function ($query) {
+    // //                 $query->select(DB::raw(1))
+    // //                     ->from('users')
+    // //                     ->whereRaw('users.id = products.user_id');
+    // //             });
+
+    //     // })
+    //     //     ->get();
+
+    //     // $userCartItems = User::find(auth()->user()->id)->carts;
+
+    //     // // $item->products->where('id',)->get()
+
+    //     // foreach($userCartItems as $item){
+    //     //     echo 'hello\n';
+    //     // }
+
+        
+        
+
+
+    //     // return view('Main.cart', compact('items'));
+    // }
+
+
+        public function accountInfo(){
+            return view('Main.accountInfo');
+        }
 
 
 }

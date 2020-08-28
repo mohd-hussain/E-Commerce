@@ -1,3 +1,8 @@
+<?php  
+    use App\Cart;
+    $cartCount = Cart::cartCount();
+?>
+
 <!doctype html>
 <html lang="zxx">
 
@@ -13,6 +18,7 @@
     <link rel="stylesheet" href="{{asset('Main/css/animate.css')}}">
     <!-- owl carousel CSS -->
     <link rel="stylesheet" href="{{asset('Main/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('Main/css/lightslider.min.css')}}">
     <!-- nice select CSS -->
     <link rel="stylesheet" href="{{asset('Main/css/nice-select.css')}}">
     <!-- font awesome CSS -->
@@ -30,9 +36,9 @@
 
     <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js" ></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
 
     <style>
         #preview{
@@ -67,6 +73,7 @@
     <script src="{{asset('Main/js/jquery.magnific-popup.js')}}"></script>
     <!-- swiper js -->
     <script src="{{asset('Main/js/swiper.min.js')}}"></script>
+    <script src="{{asset('Main/js/lightslider.min.js')}}"></script>
     <!-- swiper js -->
     <script src="{{asset('Main/js/masonry.pkgd.js')}}"></script>
     <!-- particles js -->
