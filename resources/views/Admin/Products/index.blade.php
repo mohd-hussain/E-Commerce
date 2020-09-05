@@ -40,9 +40,14 @@
                     <input type="integer" name="discount" class="form-control" id="discount">
                   </div>
                   <div class="form-group">
+                    <label for="category_id" class="col-form-label">Category Id:</label>
+                    <input type="integer" name="category_id" class="form-control" id="category_id">
+                  </div>
+                  <div class="form-group">
                     <label for="product_image" class="col-form-label">Product Image:</label>
                     <input type="file" name="product_image" class="form-control-file" id="product_image">
                   </div>
+                  
                 
               </div>
               <div class="modal-footer">
@@ -111,6 +116,7 @@
                         <th>Price</th>
                         <th>Stock</th>
                         <th>Discount</th>
+                        <th>Category</th>
                         <th>Product Image</th>
                         <th>Edit</th>
                         <th>Delete</th>
@@ -125,6 +131,7 @@
                         <td>{{ $product->price }}</td>
                         <td>{{ $product->stock }}</td>
                         <td>{{ $product->discount }}%</td>
+                        <td>{{ $product->category_id }}</td>
                         <td>
                               <img src="/storage/product_images/{{$product->product_image}}" alt="" width="100" height="100"> 
 

@@ -45,6 +45,7 @@ class ProductController extends Controller
             'price' => 'required',
             'stock' => 'required',
             'discount' => 'required',
+            'category_id' => 'required',
             'product_image' => 'image|nullable|max:1999',
 
         ]);
@@ -73,6 +74,7 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->stock = $request->stock;
         $product->discount = $request->discount;
+        $product->category_id = $request->category_id;
         $product->product_image = $fileNameToStore;
         // $product->user_id = auth()->user()->id;
 
@@ -120,6 +122,7 @@ class ProductController extends Controller
             'price' => 'required',
             'stock' => 'required',
             'discount' => 'required',
+            'category_id' => 'required',
             'product_image' => 'image|nullable|max:1999',
 
         ]);
@@ -146,6 +149,7 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->stock = $request->stock;
         $product->discount = $request->discount;
+        $product->category_id = $request->category_id;
         $product->product_image = $fileNameToStore;
 
         $product->update();

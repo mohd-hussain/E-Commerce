@@ -45,6 +45,10 @@
                                         <input type="integer" name="discount" class="form-control" value="{{$product->discount}}">
                                     </div>
                                     <div class="form-group">
+                                        <label for="category_id" class="col-form-label">Category Id:</label>
+                                        <input type="integer" name="category_id" class="form-control" id="category_id" value="{{ $product->category_id }}">
+                                    </div>
+                                    <div class="form-group">
                                         <label>Product Image:</label>
                                         <input type="file" name="product_image" class="form-control" value="{{$product->product_image}}">
                                     </div>

@@ -20,9 +20,9 @@ class CreateCustomersTable extends Migration
             $table->integer('dob');
             $table->string('gender');
             $table->string('address');
-            $tabel->string('city');
+            $table->string('city');
             $table->integer('pincode');
-            $tabel->string('state');
+            $table->string('state');
             $table->string('country');        
             $table->timestamps();
         });

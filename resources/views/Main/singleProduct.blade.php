@@ -53,7 +53,7 @@
             <ul class="list">
               <li>
                 <a class="active" href="#">
-                  <span>Category</span> : Household</a>
+                  <span>Category</span> : {{ $singleProductCategory->name }}</a>
               </li>
               <li>
                 <a href="#"> <span>Availibility</span> : In Stock : {{ $singleProduct->stock}}</a>

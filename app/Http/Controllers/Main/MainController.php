@@ -11,6 +11,7 @@ use Auth;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use App\Category;
 // use Illuminate\Http\Client\Request;
 
 class MainController extends Controller
@@ -52,10 +53,15 @@ class MainController extends Controller
         // $user = User::find(auth()->user()->id);
         // $userId = $user->id;
         $singleProduct = Product::where('id', $productId)->first();
+        $categoryId = $singleProduct->category_id;
+        // dd($categoryId);
+        $singleProductCategory = Category::where('id',$categoryId)->first();
+        // $categoreName = $singleProductCategory->name;
+        // dd($categoreName);
         // $singleCartProduct = Cart::where('user_id',$userId)->where('product_id',$productId)->first();
 
         // dd($singleCartProduct->id);
-        return view('Main.singleProduct', compact('singleProduct'));
+        return view('Main.singleProduct', compact('singleProduct','singleProductCategory'));
     }
 
     // public function cart(Cart $cartProducts){
