@@ -25,13 +25,13 @@ class Cart extends Model
         return $this->hasMany(Product::class,'id','product_id');
     }
 
-    public static function cartCount(){
-        if(Auth::check()){
-            $userId = Auth::user()->id;
-            $cartCount = DB::table('carts')->where('user_id',$userId)->sum('quantity');
-        }
-        return $cartCount;
-    }
+    // public static function cartCount(){
+    //     if(Auth::check()){
+    //         $userId = Auth::user()->id;
+    //         $cartCount = DB::table('carts')->where('user_id',$userId)->sum('quantity');
+    //     }
+    //     return $cartCount;
+    // }
 
     
 }

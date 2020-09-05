@@ -1,10 +1,4 @@
-<?php  
-    use App\Cart;
-    $cartCount = Cart::cartCount();
-?>
-
-
-
+<?php use App\Http\Controllers\Main\MainController;  ?>
 
 <!doctype html>
 <html lang="zxx">
@@ -96,9 +90,9 @@
       
 <div class="hearer_icon d-flex">  
     
-  <a style="padding-top: 10px;" href="/cart"><i class="fa fa-cart-plus">({{ $cartCount }})</i></a>
+  <a style="padding-top: 10px;" href="/cart"><i class="fa fa-cart-plus">({{ MainController::cartCount() }})</i></a>
       
-   <li style="list-style:none"; class="nav-item dropdown">
+   <!-- <li style="list-style:none"; class="nav-item dropdown">
        <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
            <i style="padding-top: 5px;" class="fas fa-user-circle"></i>
@@ -125,7 +119,34 @@
            @endif
       </div>
 
-   </li>
+   </li> -->
+
+   <li class="nav-item dropdown" style="list-style:none";>
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" style="color: black;" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }}
+                    </a>
+
+                    
+
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+                             <a class="dropdown-item" href="/accountInfo"> Account Info</a>
+                             <a class="dropdown-item" href="/orderTrack">Orders</a>
+                             <a class="dropdown-item" href="/cart">Shopping Cart</a>
+                              
+                             @if(Auth::guest())
+                                   <a class="dropdown-item" href="/login/show">Login</a>
+                                 @else
+                                 <a class="dropdown-item" href="{{ route('logout') }}"
+                                         onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                            Sign Out
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form> 
+                                  @endif
+                     </div>
+                </li>
 
 
 </div>
@@ -161,16 +182,15 @@
                                 <div class="col-lg-5 col-md-8">
                                     <div class="banner_text">
                                         <div class="banner_text_iner">
-                                            <h1>Wood & Cloth
-                                                Sofa</h1>
-                                            <p>Incididunt ut labore et dolore magna aliqua quis ipsum
+                                            <h1>Macbook-Pro</h1>
+                                            <p>Hussain Incididunt ut labore et dolore magna aliqua quis ipsum
                                                 suspendisse ultrices gravida. Risus commodo viverra</p>
                                             <a href="#" class="btn_2">buy now</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="banner_img d-none d-lg-block">
-                                        <img src="{{asset('Main/img/banner_img.png')}}" alt="">
+                                        <img src="/storage/product_images/macbook-pro_1598168965.png" alt="">
                                         
                                 </div>
                             </div>
@@ -179,8 +199,7 @@
                                 <div class="col-lg-5 col-md-8">
                                     <div class="banner_text">
                                         <div class="banner_text_iner">
-                                            <h1>Cloth & Wood
-                                                Sofa</h1>
+                                            <h1>Macbook-Pro</h1>
                                             <p>Incididunt ut labore et dolore magna aliqua quis ipsum
                                                 suspendisse ultrices gravida. Risus commodo viverra</p>
                                             <a href="#" class="btn_2">buy now</a>
@@ -188,7 +207,7 @@
                                     </div>
                                 </div>
                                 <div class="banner_img d-none d-lg-block">
-                                    <img src="{{asset('Main/img/banner_img.png')}}" alt="">
+                                    <img src="/storage/product_images/macbook-pro_1598168965.png" alt="">
                                 </div>
                             </div>
                         </div><div class="single_banner_slider">
@@ -196,8 +215,7 @@
                                 <div class="col-lg-5 col-md-8">
                                     <div class="banner_text">
                                         <div class="banner_text_iner">
-                                            <h1>Wood & Cloth
-                                                Sofa</h1>
+                                            <h1>Mackbook-Pro</h1>
                                             <p>Incididunt ut labore et dolore magna aliqua quis ipsum
                                                 suspendisse ultrices gravida. Risus commodo viverra</p>
                                             <a href="#" class="btn_2">buy now</a>
@@ -205,7 +223,7 @@
                                     </div>
                                 </div>
                                 <div class="banner_img d-none d-lg-block">
-                                    <img src="{{asset('Main/img/banner_img.png')}}" alt=""> 
+                                    <img src="/storage/product_images/macbook-pro_1598168965.png" alt=""> 
                                 </div>
                             </div>
                         </div>
@@ -214,7 +232,7 @@
                                 <div class="col-lg-5 col-md-8">
                                     <div class="banner_text">
                                         <div class="banner_text_iner">
-                                            <h1>Cloth $ Wood Sofa</h1>
+                                            <h1>Mackbook-Pro</h1>
                                             <p>Incididunt ut labore et dolore magna aliqua quis ipsum
                                                 suspendisse ultrices gravida. Risus commodo viverra</p>
                                             <a href="#" class="btn_2">buy now</a>

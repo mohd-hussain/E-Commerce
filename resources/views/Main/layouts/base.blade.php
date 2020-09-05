@@ -1,7 +1,4 @@
-<?php  
-    use App\Cart;
-    $cartCount = Cart::cartCount();
-?>
+
 
 <!doctype html>
 <html lang="zxx">

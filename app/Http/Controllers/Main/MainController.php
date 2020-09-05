@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use App\Model\Product;
 use App\Cart;
+use Auth;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -17,7 +18,7 @@ class MainController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth',['except' => ['index']]);
     }
 
     public function index()
@@ -134,6 +135,19 @@ class MainController extends Controller
 
         public function accountInfo(){
             return view('Main.accountInfo');
+        }
+
+
+        public static function cartCount(){
+            if(Auth::check()){
+                $userId = Auth::user()->id;
+                $cartCount = DB::table('carts')->where('user_id',$userId)->sum('quantity');
+                return $cartCount;
+            }
+            
+            else{
+                return view('Main.index');
+            }
         }
 
 

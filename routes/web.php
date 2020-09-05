@@ -11,14 +11,15 @@
 |
 */
 
-// use Illuminate\Support\Facades\Auth;
-// use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 
 
 Route::get('/', function () {
     return view('welcome');
 });
+// Route::get('/','Main\MainController@index')->name('Main.index');
 
 // Route::get('/dashboard', function(){ 
 //     return view('Admin.dashboard');
@@ -73,11 +74,11 @@ Route::get('/single-product/{id}','Main\MainController@singleProduct');
 
 Route::get('/cart','Main\MainController@cart')->middleware('auth');
 
-Route::post('/addToCart/','CartController@addToCart');
+Route::post('addToCart/','Main\CartController@addToCart');
 
-Route::get('updateCartQuantity/{id}/{quantity}', 'CartController@updateCartQuantity');
+Route::get('updateCartQuantity/{id}/{quantity}','Main\CartController@updateCartQuantity');
  
-Route::delete('/deleteFromCart/{id}/','CartController@deleteFromCart');
+Route::delete('/deleteFromCart/{id}/','Main\CartController@deleteFromCart');
 
 Route::get('/accountInfo','Main\MainController@accountInfo');
 

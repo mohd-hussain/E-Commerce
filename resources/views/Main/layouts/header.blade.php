@@ -1,3 +1,6 @@
+
+<?php use App\Http\Controllers\Main\MainController;  ?>
+
 <header class="main_menu home_menu">
     <div class="container">
         <div class="row align-items-center">
@@ -69,22 +72,50 @@
 
                     <div class="hearer_icon d-flex">
                           
-                        <a style="padding-top: 10px;" href="/cart"><i class="fa fa-cart-plus">({{ $cartCount }})</i></a>
+                        <a style="padding-top: 10px; margin-right: 30px;" href="/cart"><i class="fa fa-cart-plus">({{ MainController::cartCount() }})</i></a>
                         <!-- <button type="button" class="btn btn-info" data-toggle="dropdown">
                              <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
                        </button> -->
 
-                        <li class="nav-item dropdown" style="list-style:none";>
+                    <!-- <li class="nav-item dropdown" style="list-style:none";>
                          <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
                              role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                              <i style="padding-top: 5px;" class="fas fa-user-circle"></i>
                              
                          </a>
+                         
                          <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
                              <a class="dropdown-item" href="/login/show"> Account Info</a>
                              <a class="dropdown-item" href="tracking.html">Orders</a>
                              <a class="dropdown-item" href="cart.html">Shopping Cart</a>
-                             <!-- <a class="dropdown-item" href="elements.html">Sign Out  </a> -->
+                              <a class="dropdown-item" href="elements.html">Sign Out  </a> -->
+                             <!-- @if(Auth::guest()) -->
+                                   <!-- <a class="dropdown-item" href="/login/show">Login</a> -->
+                                 <!-- @else -->
+                                 <!-- <a class="dropdown-item" href="{{ route('logout') }}"
+                                         onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                            Sign Out
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form> -->
+                                 <!-- @endif -->
+                         <!-- </div> -->
+
+                     <!-- </li> --> 
+                <li class="nav-item dropdown" style="list-style:none";>
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" style="color: black;" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }}
+                    </a>
+
+                    
+
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+                             <a class="dropdown-item" href="/accountInfo"> Account Info</a>
+                             <a class="dropdown-item" href="/orderTrack">Orders</a>
+                             <a class="dropdown-item" href="/cart">Shopping Cart</a>
+                              
                              @if(Auth::guest())
                                    <a class="dropdown-item" href="/login/show">Login</a>
                                  @else
@@ -95,11 +126,10 @@
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
-                                </form>
-                                 @endif
-                         </div>
-
-                     </li>
+                                </form> 
+                                  @endif
+                     </div>
+                </li>
 
 
                     </div>
