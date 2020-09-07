@@ -25,12 +25,22 @@ class MainController extends Controller
     public function index()
     {
         $products = Product::all();
-        return view('Main.index', compact('products'));
+        $categories = Category::all();
+        // dd($categories);
+        return view('Main.index', compact('products','categories'));
     }
 
-    public function categories()
+    public function categories($id)
     {
-        return view('Main.categories');
+        $category = Category::findOrFail($id);
+
+        // dd($category);
+        $category->load('products');
+        // dd($category);
+        // foreach($category->products as $product){
+        //             echo $product->name;
+        //         }
+        return view('Main.categories',compact('category'));
     }
 
     public function contactUs()

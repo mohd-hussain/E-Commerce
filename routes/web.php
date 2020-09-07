@@ -61,7 +61,7 @@ Route::group(['middleware' => ['auth','admin']], function() {
 
 Route::get('/homeshop','Main\MainController@index')->name('Main.index');
 
-Route::get('/categories','Main\MainController@categories');
+Route::get('/category/{id}','Main\MainController@categories');
 
 Route::get('/contactUs','Main\MainController@contactUs');
 

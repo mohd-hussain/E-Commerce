@@ -8,7 +8,7 @@
                     <div class="breadcrumb_iner">
                         <div class="breadcrumb_iner_item">
                             <h2>Shop Category</h2>
-                            <p>Home <span>-</span> Shop Category</p>
+                            <p>Home <span>-</span>{{ $category->name }}</p>
                         </div>
                     </div>
                 </div>
@@ -21,9 +21,10 @@
     <section class="cat_product_area section_padding">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
-                    <div class="left_sidebar_area">
-                        <aside class="left_widgets p_filter_widgets">
+                
+                <!-- <div class="col-lg-3">
+                    <div class="left_sidebar_area"> -->
+                        <!-- <aside class="left_widgets p_filter_widgets">
                             <div class="l_w_title">
                                 <h3>Browse Categories</h3>
                             </div>
@@ -59,9 +60,9 @@
                                     </li>
                                 </ul>
                             </div>
-                        </aside>
+                        </aside> -->
 
-                        <aside class="left_widgets p_filter_widgets">
+                        <!-- <aside class="left_widgets p_filter_widgets">
                             <div class="l_w_title">
                                 <h3>Product filters</h3>
                             </div>
@@ -101,9 +102,9 @@
                                     </li>
                                 </ul>
                             </div>
-                        </aside>
+                        </aside> -->
 
-                        <aside class="left_widgets p_filter_widgets">
+                        <!-- <aside class="left_widgets p_filter_widgets">
                             <div class="l_w_title">
                                 <h3>Color Filter</h3>
                             </div>
@@ -126,7 +127,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </aside>
+                        </aside> -->
 
                         <!-- <aside class="left_widgets p_filter_widgets price_rangs_aside">
                             <div class="l_w_title">
@@ -149,14 +150,14 @@
                                 </div>
                             </div>
                         </aside> -->
-                    </div>
-                </div>
-                <div class="col-lg-9">
+                    <!-- </div>
+                </div> -->
+                <div class="col-lg-12">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="product_top_bar d-flex justify-content-between align-items-center">
                                 <div class="single_product_menu">
-                                    <p><span>10000 </span> Product Found</p>
+                                    <p><span>100 </span> Product Found</p>
                                 </div>
                                 <div class="single_product_menu d-flex">
                                     <h5>short by : </h5>
@@ -190,18 +191,21 @@
                         </div>
                     </div>
 
+                
                     <div class="row align-items-center latest_product_inner">
-                        <div class="col-lg-4 col-sm-6">
+                    @foreach($category->products as $product)
+                        <div class="col-lg-3 col-sm-6">
                             <div class="single_product_item">
-                                <img src="{{asset('Main/img/product/product_1.png')}}" alt="">
+                                <img src="/storage/product_images/{{$product->product_image}}" alt="">
                                 <div class="single_product_text">
-                                    <h4>Quartz Belt Watch</h4>
-                                    <h3>$150.00</h3>
+                                    <h4>{{ $product->name }}</h4>
+                                    <h3>{{ $product->price }}</h3>
                                     <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-sm-6">
+                    @endforeach
+                        <!-- <div class="col-lg-4 col-sm-6">
                             <div class="single_product_item">
                                 <img src="{{asset('Main/img/product/product_1.png')}}" alt=""> 
                                 <div class="single_product_text">
@@ -210,8 +214,8 @@
                                     <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
+                        </div> -->
+                        <!-- <div class="col-lg-4 col-sm-6">
                             <div class="single_product_item">
                                 <img src="{{asset('Main/img/product/product_1.png')}}" alt="">
                                 <div class="single_product_text">
@@ -230,8 +234,8 @@
                                     <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
+                        </div> -->
+                        <!-- <div class="col-lg-4 col-sm-6">
                             <div class="single_product_item">
                                 <img src="{{asset('Main/img/product/product_1.png')}}" alt="">  
                                 <div class="single_product_text">
@@ -250,8 +254,8 @@
                                     <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
+                        </div> -->
+                        <!-- <div class="col-lg-4 col-sm-6">
                             <div class="single_product_item">
                                 <img src="{{asset('Main/img/product/product_1.png')}}" alt="">  
                                 <div class="single_product_text">
@@ -270,8 +274,8 @@
                                     <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
+                        </div> -->
+                        <!-- <div class="col-lg-4 col-sm-6">
                             <div class="single_product_item">
                                 <img src="{{asset('Main/img/product/product_1.png')}}" alt="">
                                 <div class="single_product_text">
@@ -280,8 +284,10 @@
                                     <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-12">
+                        </div> -->
+
+
+                        <!-- <div class="col-lg-12">
                             <div class="pageination">
                                 <nav aria-label="Page navigation example">
                                     <ul class="pagination justify-content-center">
@@ -304,8 +310,10 @@
                                     </ul>
                                 </nav>
                             </div>
-                        </div>
-                    </div>
+                         </div> -->
+
+                      </div>
+                    
                 </div>
             </div>
         </div>

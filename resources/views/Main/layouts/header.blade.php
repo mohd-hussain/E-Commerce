@@ -1,5 +1,7 @@
 
-<?php use App\Http\Controllers\Main\MainController;  ?>
+<?php use App\Http\Controllers\Main\MainController; 
+$cartCount = MainController::cartCount();
+ ?>
 
 <header class="main_menu home_menu">
     <div class="container">
@@ -71,8 +73,16 @@
                     </div>
 
                     <div class="hearer_icon d-flex">
+
+                        <div class="dropdown cart">
+                            <a  class="dropdown-toggle" href="/cart" id="navbarDropdown3" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-cart-plus" data-content="{{$cartCount}}" style="margin:10px;"></i>
+                            </a>
+                    
+                        </div>
                           
-                        <a style="padding-top: 10px; margin-right: 30px;" href="/cart"><i class="fa fa-cart-plus">({{ MainController::cartCount() }})</i></a>
+                        <!-- <a style="padding-top: 10px; margin-right: 30px;" href="/cart"><i class="fa fa-cart-plus">({{ MainController::cartCount() }})</i></a> -->
                         <!-- <button type="button" class="btn btn-info" data-toggle="dropdown">
                              <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
                        </button> -->
@@ -104,6 +114,8 @@
                          <!-- </div> -->
 
                      <!-- </li> --> 
+
+
                 <li class="nav-item dropdown" style="list-style:none";>
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" style="color: black;" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }}

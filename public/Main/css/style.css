@@ -170,6 +170,7 @@ p {
   margin-bottom: 0px;
   color: #000;
   font-weight: 300;
+  text-align: center;
 }
 
 /* line 114, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_common.scss */
@@ -2256,7 +2257,7 @@ ul {
   height: 14px;
   right: -8px;
   top: -8px;
-  content: "5";
+  content: attr(data-content);
   text-align: center;
   line-height: 15px;
   font-size: 10px;
@@ -4328,6 +4329,7 @@ ul {
   font-family: "Poppins", sans-serif;
   color: #797979;
   border-bottom: 0px !important;
+  text-align: center;
 }
 
 /* line 1061, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_product.scss */
