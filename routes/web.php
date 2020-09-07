@@ -59,7 +59,7 @@ Route::group(['middleware' => ['auth','admin']], function() {
 
 //Main/MainController
 
-Route::get('/homeshop','Main\MainController@index')->name('Main.index');
+Route::get('/shop','Main\MainController@index')->name('Main.index');
 
 Route::get('/category/{id}','Main\MainController@categories');
 

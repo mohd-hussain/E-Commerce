@@ -29,10 +29,10 @@ $cartCount = MainController::cartCount();
                                 
                             </li> -->
                             <li class="nav-item">
-                                <a class="nav-link" href="/homeshop">Shop</a>
+                                <a class="nav-link" href="/shop">Shop</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="shop.html">Add to Cart</a>
+                                <a class="nav-link" href="">Add to Cart</a>
                             </li>
                             <!-- <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
@@ -63,12 +63,6 @@ $cartCount = MainController::cartCount();
                                 <a class="nav-link" href="/contactUs">Contact us</a>
                             </li>
 
-                             @if(Auth::guest())
-                                <li class="nav-item">
-                                    <a class="btn-sm vendorbtn" href="/vendor">Register Now</a>
-                                </li>
-                                
-                                @endif
                         </ul>
                     </div>
 

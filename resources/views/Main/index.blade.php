@@ -37,7 +37,7 @@ $cartCount = MainController::cartCount();
             <div class="row align-items-center">  
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="logo navbar-brand" href="/homeshop"> <img style="height:30px;max-width:100%;" src="{{asset('Main/img/logo.svg')}}" alt="logo"> </a>
+                        <a class="logo navbar-brand" href="/shop"> <img style="height:30px;max-width:100%;" src="{{asset('Main/img/logo.svg')}}" alt="logo"> </a>
     
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -48,7 +48,7 @@ $cartCount = MainController::cartCount();
                         <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/homeshop">Home</a>
+                                    <a class="nav-link" href="/shop">Home</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_1"
