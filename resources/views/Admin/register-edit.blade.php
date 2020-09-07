@@ -26,6 +26,11 @@
                                             <label>Name</label>
                                             <input type="none" name="username" value="{{$users->name}}" class="form-control" >
                                     </div>
+
+                                    <div class="form-group">
+                                            <label>Email</label>
+                                            <input type="none" name="useremail" value="{{$users->email}}" class="form-control" >
+                                    </div>
     
                                     <div class="form-group">
                                             <label>User Role</label>
