@@ -33,20 +33,27 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth','admin']], function() {
-    Route::get('/dashboard', function(){ 
-        return view('Admin.dashboard');
-    });
+    // Route::get('/dashboard', function(){ 
+    //     return view('Admin.dashboard');
+    // });
+    Route::get('/dashboard','Admin\DashboardController@index');
 
-    Route::get('/role-register','Admin\DashboardController@registered');
-    Route::get('/role-edit/{id}','Admin\DashboardController@registeredEdit');
-    Route::put('/role-register-update/{id}','Admin\DashboardController@roleRegisterUpdate');
-    Route::delete('/role-delete/{id}','Admin\DashboardController@roleDelete');
+    Route::get('/users-all','Admin\UserController@index');
+    Route::get('/edit-user/{id}','Admin\UserController@editUser');
+    Route::put('/update-user/{id}','Admin\UserController@updateUser');
+    Route::delete('/delete-user/{id}','Admin\UserController@deleteUser');
 
     Route::get('/products-all','Admin\ProductController@index');
     Route::post('/store-product','Admin\ProductController@store');
     Route::get('/edit-product/{id}','Admin\ProductController@edit');
     Route::put('/update-product/{id}','Admin\ProductController@update');
     Route::delete('/delete-product/{id}','Admin\ProductController@destroy');
+
+    Route::get('/categories-all','Admin\CategoryController@index');
+    Route::post('/store-category','Admin\CategoryController@store');
+    Route::get('/edit-category/{id}','Admin\CategoryController@edit');
+    Route::put('/update-category/{id}','Admin\CategoryController@update');
+    Route::delete('/delete-category/{id}','Admin\CategoryController@deleteCategory');
 
     Route::get('/reviews-all','Admin\ReviewController@index');
     Route::post('/store-review','Admin\ReviewController@store');  

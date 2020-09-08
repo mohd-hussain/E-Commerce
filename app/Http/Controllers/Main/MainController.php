@@ -74,15 +74,7 @@ class MainController extends Controller
         return view('Main.singleProduct', compact('singleProduct','singleProductCategory'));
     }
 
-    // public function cart(Cart $cartProducts){
-    //     // $cartProduct = Product::where('id',$id)->first();
-    //     // return view('Main.cart',compact('cartProduct'));
-    //     $cartProducts = Cart::all();
-    //     //  dd($cartProducts);
-    //     // $cartProducts->load('products');
-    //     //  dd($cartProducts);
-    //     return view('Main.cart',compact('cartProducts'));
-    // }
+    
 
     public function cart(){
 
@@ -102,69 +94,22 @@ class MainController extends Controller
     }
 
 
-    // public function cart()
-    // {
-               
-    //     $user = User::findOrFail(auth()->user()->id);
-    //     $userId = $user->id;
-    //     // dd($userId);
-
-    //     $items = Product::whereExists(function ($query) use ($userId) {
-    //         $query->select(DB::raw(1))
-    //             ->from('carts')
-    //             ->whereRaw('carts.product_id = products.id');
-
-    //             // $query->select(DB::raw(1))
-    //             // ->from('carts')
-    //             // ->whereRaw('carts.user_id', $userId);
-            
-    //         })->get();
-
-    //         // print_r($items);
-
-    //         dd($items);
-
-    // //             ->whereExists(function ($query) {
-    // //                 $query->select(DB::raw(1))
-    // //                     ->from('users')
-    // //                     ->whereRaw('users.id = products.user_id');
-    // //             });
-
-    //     // })
-    //     //     ->get();
-
-    //     // $userCartItems = User::find(auth()->user()->id)->carts;
-
-    //     // // $item->products->where('id',)->get()
-
-    //     // foreach($userCartItems as $item){
-    //     //     echo 'hello\n';
-    //     // }
-
-        
-        
+    public function accountInfo(){
+        return view('Main.accountInfo');
+    }
 
 
-    //     // return view('Main.cart', compact('items'));
-    // }
-
-
-        public function accountInfo(){
-            return view('Main.accountInfo');
+    public static function cartCount(){
+        if(Auth::check()){
+            $userId = Auth::user()->id;
+            $cartCount = DB::table('carts')->where('user_id',$userId)->sum('quantity');
+            return $cartCount;
         }
-
-
-        public static function cartCount(){
-            if(Auth::check()){
-                $userId = Auth::user()->id;
-                $cartCount = DB::table('carts')->where('user_id',$userId)->sum('quantity');
-                return $cartCount;
-            }
-            
-            else{
-                return view('Main.index');
-            }
+        
+        else{
+            return view('Main.index');
         }
+    }
 
 
 }

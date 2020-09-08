@@ -11,12 +11,18 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <h4 class="card-title"> Registered Roles</h4>
+              <h4 class="card-title"> Registered Users</h4>
             </div>
 
             @if (session('success'))
                 <div class="alert alert-success" role="alert">
                     {{ session('success') }}
+                </div>
+            @endif
+
+            @if (session('danger'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('danger') }}
                 </div>
             @endif
 
@@ -42,10 +48,10 @@
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->usertype }}</td>
                                     <td> 
-                                        <a href="/role-edit/{{$user->id}}" class="btn btn-success">Edit</a>
+                                        <a href="/edit-user/{{$user->id}}" class="btn btn-success">Edit</a>
                                     </td>
                                     <td> 
-                                      <form action="/role-delete/{{$user->id}}"" method="POST">
+                                      <form action="/delete-user/{{$user->id}}" method="POST">
 
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}

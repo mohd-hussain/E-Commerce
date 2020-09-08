@@ -106,6 +106,12 @@
                 </div>
             @endif
 
+          @if (session('danger'))
+                <div class="alert alert-danger" role="alert">
+                    {{ session('danger') }}
+                </div>
+            @endif
+
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table" id="datatable">

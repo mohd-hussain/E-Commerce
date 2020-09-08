@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Dashboard:Edit About Us 
+    Dashboard:Edit Role of Registered User 
 @endsection
 
 
@@ -12,35 +12,37 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Edit About Us For Registerd User.</h3>
+                        <h3>Edit Registerd User.</h3>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                            <form action="/update-aboutus/{{ $aboutusedit->id }}" method="POST">
+                            <form action="/update-user/{{ $users->id }}" method="POST">
 
                                     {{ csrf_field() }}
                                     {{ method_field('PUT') }}
 
                                     <div class="form-group">
-                                            <label>Title</label>
-                                            <input type="text" name="title" value="{{$aboutusedit->title}}" class="form-control" >
+                                            <label>Name</label>
+                                            <input type="none" name="username" value="{{$users->name}}" class="form-control" >
                                     </div>
 
                                     <div class="form-group">
-                                            <label>Subtitle</label>
-                                            <input type="text" name="subtitle" value="{{$aboutusedit->subtitle}}" class="form-control" >
-                                    </div>
-
-                                    <div class="form-group">
-                                            <label>Description</label>
-                                            <input type="text" name="description" value="{{$aboutusedit->description}}" class="form-control" >
+                                            <label>Email</label>
+                                            <input type="none" name="useremail" value="{{$users->email}}" class="form-control" >
                                     </div>
     
-                                    
+                                    <div class="form-group">
+                                            <label>User Role</label>
+                                            <select name="usertype"  class="form-control" >
+                                                <option value="admin">Admin</option>
+                                                <option value="vendor">Vendor</option>
+                                                <option value="">None</option>
+                                            </select>
+                                    </div>
     
                                     <button type="submit" class="btn btn-success">Update</button>
-                                    <a href="/aboutus" class="btn btn-danger">Cancel</a>
+                                    <a href="/role-register" class="btn btn-danger">Cancel</a>
                                 </form>
                             </div>
                         </div>

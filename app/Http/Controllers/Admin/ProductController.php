@@ -169,6 +169,6 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
 
-        return redirect('/products-all')->with('success','Your Data is Deleted Succesfully');
+        return redirect('/products-all')->with('danger','Your Data is Deleted Succesfully');
     }
 }

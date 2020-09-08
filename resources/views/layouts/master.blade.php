@@ -45,48 +45,51 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="{{ 'reviews-all' == request()->path() ? 'active' : '' }}"">
-            <a href="./reviews-all">
-              <i class="now-ui-icons education_atom"></i>
-              <p>Product Reveiws</p>
+
+          <li class="{{ 'users-all' == request()->path() ? 'active' : '' }}">
+            <a href="./users-all">
+              <i class="now-ui-icons users_single-02"></i>
+              <p>Users</p>
             </a>
           </li>
-          <li>
-            <a href="./map.html">
-              <i class="now-ui-icons location_map-big"></i>
-              <p>Payment</p>
-            </a>
-          </li>
+          
           <li class="{{ 'products-all' == request()->path() ? 'active' : '' }}">
             <a href="./products-all">
               <i class="now-ui-icons ui-1_bell-53"></i>
               <p>Products</p>
             </a>
           </li>
-        <li class="{{ 'role-register' == request()->path() ? 'active' : '' }}">
-            <a href="./role-register">
+
+          <li class="{{ 'categories-all' == request()->path() ? 'active' : '' }}">
+            <a href="./categories-all">
               <i class="now-ui-icons users_single-02"></i>
-              <p>Users</p>
+              <p>Categories</p>
             </a>
           </li>
+
+          <li class="{{ 'reviews-all' == request()->path() ? 'active' : '' }}"">
+            <a href="./reviews-all">
+              <i class="now-ui-icons education_atom"></i>
+              <p>Product Reveiws</p>
+            </a>
+          </li>
+
           <li>
             <a href="./tables.html">
               <i class="now-ui-icons design_bullet-list-67"></i>
               <p>Cart</p>
             </a>
           </li>
+
           <li>
             <a href="./typography.html">
               <i class="now-ui-icons text_caps-small"></i>
               <p>Orders</p>
             </a>
           </li>
-          <li class="active-pro">
-            <a href="./upgrade.html">
-              <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-              <p>Saved Items</p>
-            </a>
-          </li>
+
+          
+
         </ul>
       </div>
     </div>
