@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Dashboard:About-Us    
+    Dashboard :All Categories    
 @endsection
 
 

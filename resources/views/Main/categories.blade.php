@@ -157,13 +157,14 @@
                         <div class="col-lg-12">
                             <div class="product_top_bar d-flex justify-content-between align-items-center">
                                 <div class="single_product_menu">
-                                    <p><span>100 </span> Product Found</p>
+                                    <p><span>{{$category->products->count()}} </span> Product Found</p>
                                 </div>
                                 <div class="single_product_menu d-flex">
                                     <h5>short by : </h5>
                                     <select>
                                         <option data-display="Select">name</option>
-                                        <option value="1">price</option>
+                                        <!-- <option value="1" >Name</option> -->
+                                        <option value="1" >price</option>
                                         <option value="2">product</option>
                                     </select>
                                 </div>

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Dashboard:Registered Roles  
+    Dashboard : Registered Users  
 @endsection
 
 
@@ -32,7 +32,7 @@
                   <thead class=" text-primary">
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Phone</th>
+                        <!-- <th>Phone</th> -->
                         <th>Email</th>
                         <th>Usertype</th>
                         <th>Edit</th>
@@ -44,7 +44,7 @@
                                 <tr>
                                     <td>{{ $user->id }}</td>
                                     <td>{{ $user->name }}</td>
-                                    <td>{{ $user->phone }}</td>
+                                    <!-- <td>{{ $user->phone }}</td> -->
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->usertype }}</td>
                                     <td> 

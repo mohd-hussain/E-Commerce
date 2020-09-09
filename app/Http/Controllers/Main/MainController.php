@@ -17,10 +17,10 @@ use App\Category;
 class MainController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('auth',['except' => ['index']]);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth',['except' => ['index']]);
+    // }
 
     public function index()
     {

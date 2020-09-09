@@ -1,8 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Main;
 
-use App\Model\Customer;
+use App\Http\Controllers\Controller;
+use App\Customer;
+use App\User;
+
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -14,7 +18,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        return view('Main.customerSignup');
     }
 
     /**
@@ -35,7 +39,26 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $customer = new Customer;
+        $customer->user_id = $user->id;
+        $customer->dob = $request->dob;
+        $customer->gender = $request->gender;
+        $customer->mobile_no = $request->mobile_no;
+        $customer->country = $request->country;
+        $customer->state = $request->state;
+        $customer->city = $request->city;
+        $customer->pincode = $request->pincode;
+        $customer->address = $request->address;
+        $customer->save();
+
+        return redirect('/login/show')->with('success','Register Successfully');
+
     }
 
     /**

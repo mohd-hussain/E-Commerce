@@ -78,13 +78,6 @@ $cartCount = MainController::cartCount();
                                     <a class="nav-link" href="/contactUs">Contact us</a>
                                 </li>
                                 
-                                @if(Auth::guest())
-                                <li class="nav-item">
-                                    <a class="btn-sm vendorbtn" href="/vendor">Register Now</a>
-                                </li>
-                                
-                                @endif
-                                
                             </ul>
                         </div>
 
@@ -120,6 +113,7 @@ $cartCount = MainController::cartCount();
                                         <a class="dropdown-item" href="/accountInfo"> Account Info</a>
                                         <a class="dropdown-item" href="/orderTrack">Orders</a>
                                         <a class="dropdown-item" href="/cart">Shopping Cart</a>
+                                        <a href="/login/show" class="dropdown-item">Customer Registration</a>
                                         
                                         @if(Auth::guest())
                                             <a class="dropdown-item" href="/login/show">Login</a>

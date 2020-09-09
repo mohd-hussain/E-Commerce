@@ -91,6 +91,10 @@ Route::get('/accountInfo','Main\MainController@accountInfo');
 
 
 
+Route::resource('/customer/register','Main\CustomerController@index');
+
+
+
 
 
 // Main/ProductController
