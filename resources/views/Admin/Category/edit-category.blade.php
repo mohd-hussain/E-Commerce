@@ -23,12 +23,17 @@
                                     {{ method_field('PUT') }}
 
                                     <div class="form-group">
-                                            <label>Title</label>
+                                            <label>Id</label>
+                                            <input type="integer" name="categoryId" value="{{$category->id}}" class="form-control" >
+                                    </div>
+
+                                    <div class="form-group">
+                                            <label>Name</label>
                                             <input type="text" name="categoryName" value="{{$category->name}}" class="form-control" >
                                     </div>
 
                                     <button type="submit" class="btn btn-success">Update</button>
-                                    <a href="/aboutus" class="btn btn-danger">Cancel</a>
+                                    <a href="/categories-all" class="btn btn-danger">Cancel</a>
                                 </form>
                             </div>
                         </div>

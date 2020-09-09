@@ -33,6 +33,7 @@ class CategoryController extends Controller
 
         $category = Category::findOrFail($id);
 
+        $category->id = $request->categoryId;
         $category->name = $request->categoryName;
 
         $category->save();
