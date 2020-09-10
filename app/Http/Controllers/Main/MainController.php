@@ -12,6 +12,7 @@ use Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use App\Category;
+use Illuminate\Support\Facades\Session;
 // use Illuminate\Http\Client\Request;
 
 class MainController extends Controller
@@ -19,15 +20,31 @@ class MainController extends Controller
 
     // public function __construct()
     // {
-    //     $this->middleware('auth',['except' => ['index']]);
+    //     $this->middleware('auth',['except' => ['index','login']]);
     // }
 
     public function index()
     {
         $products = Product::all();
+        $products = session(['key' => $products]);
+        $products = session()->get('key');
+        // dd($sessionProducts);
+            // foreach($pdata as $product){
+            //      print_r($product->name);
+            //     //  var_dump($product);
+            // }
+                
+            
+        
         $categories = Category::all();
+        $categories = session(['cat' => $categories]);
+        $categories = session()->get('cat');
+        // foreach($categories as $category){
+        //     echo $category->name;
+        // }
         // dd($categories);
-        return view('Main.index', compact('products','categories'));
+
+        return view('Main.index',compact('products','categories'));
     }
 
     public function categories($id)

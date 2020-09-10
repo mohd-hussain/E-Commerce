@@ -1,6 +1,4 @@
-<?php use App\Http\Controllers\Main\MainController; 
-$cartCount = MainController::cartCount();
-?>
+
 
 <!doctype html>
 <html lang="zxx">
@@ -55,16 +53,23 @@ $cartCount = MainController::cartCount();
                                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Shop
                                     </a>
+                                           
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
                                         <!-- <a class="dropdown-item" href="/categories"> Electronics</a>
                                         <a class="dropdown-item" href="/categories">Fashion</a>
                                         <a class="dropdown-item" href="/categories">Sports</a>
                                         <a class="dropdown-item" href="/categories">Furnitures</a>
                                         <a class="dropdown-item" href="/categories">Books</a> -->
+                                         
+                                        @if(Auth::guest())
+                                           <a class="dropdown-item" href="/login/show">Login</a>
+                                        @else   
+                                           @foreach($categories as $category)
+                                             <a class="dropdown-item" href="/category/{{ $category->id }}"> {{ $category->name }}</a>
+                                           @endforeach
 
-                                        @foreach($categories as $category)
-                                            <a class="dropdown-item" href="/category/{{$category->id}}"> {{ $category->name }}</a>
-                                        @endforeach
+                                        @endif   
+                                       
                                         
                                     </div>
                                 </li>
@@ -92,21 +97,26 @@ $cartCount = MainController::cartCount();
                             
                             
                             <div class="dropdown cart">
-                                <!-- <a  class="dropdown-toggle" href="/cart" id="navbarDropdown3" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-cart-plus" data-content="{{$cartCount}}" style="margin:10px;"></i>
-                                </a> -->
+                                
                                
-                                <a style="padding-top: 10px;" href="/cart"><i class="fa fa-cart-plus" data-content="{{$cartCount}}" style="margin:10px;"></i></a>
+                                <a style="padding-top: 10px;" href="/cart"><i class="fa fa-cart-plus" data-content="" style="margin:10px;"></i></a>
                             </div>
                             
                             
 
                             <li class="nav-item dropdown" style="list-style:none";>
+                            @if(Auth::guest())
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" style="color: black;" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                               <i class="fas fa-user-circle" data-content=""></i>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+                                <a class="dropdown-item" href="/login"> Log In kro bahi</a>
+                            </div>
+                            @else
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" style="color: black;" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
-
+                            
                                 
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
@@ -128,6 +138,7 @@ $cartCount = MainController::cartCount();
                                             </form> 
                                             @endif
                                 </div>
+                                @endif
                             </li>
                         </div>
 
@@ -254,14 +265,16 @@ $cartCount = MainController::cartCount();
                         <div class="single_product_list_slider">
                             <div class="row align-items-center justify-content-between"> 
 
-                            @foreach($products as $product)   
+                             
+                                 @foreach($products  as $product)
+                                                
                                 <div class="col-lg-3 col-sm-6">
                                     <div class="single_product_item">
-                                        <a href="/single-product/{{$product->id}}"><img src="/storage/product_images/{{$product->product_image}}" alt="">                                     
+                                        <a href="/single-product/{{$product['id']}}"><img src="/storage/product_images/{{$product['product_image']}}" alt="">                                     
                                         <div class="single_product_text">
                                             <!-- <h3>{{$product->id}}</h3> -->
-                                            <h4>{{$product->name}}</h4>
-                                            <h3>{{$product->price}}</h3></a>
+                                            <h4>{{ $product['name'] }}</h4>
+                                            <h3>{{ $product['price'] }}</h3></a>
                                             <a href="" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
                                            
                                                 
@@ -269,7 +282,8 @@ $cartCount = MainController::cartCount();
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                                @endforeach
+                             
 
 
                                 <!-- <div class="col-lg-3 col-sm-6">
