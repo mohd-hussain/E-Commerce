@@ -16,13 +16,21 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form action="/store-category" method="POST" > 
+          <form action="/store-category" method="POST" enctype="multipart/form-data"> 
           
               {{ csrf_field() }}
               <div class="modal-body">
                   <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Category Name:</label>
-                    <input type="text" name="categoryName" class="form-control" id="recipient-name">
+                    <label for="categoryName" class="col-form-label">Category Name:</label>
+                    <input type="text" name="categoryName" class="form-control" id="CategoryName">
+                  </div>
+                  <div class="form-group">
+                    <label for="description" class="col-form-label">Description:</label>
+                    <input type="text" name="description" class="form-control" id="description">
+                  </div>
+                  <div class="form-group">
+                    <label for="category_image" class="col-form-label"> Category Image:</label>
+                    <input type="file" name="category_image" class="form-control-file" id="category_image">
                   </div>
                   
               </div>
@@ -121,16 +129,21 @@
               <div class="table-responsive">
                 <table class="table" id="datatable">
                   <thead class=" text-primary">
-                        <th>Id</th>
+                        <th>Sn</th>
                         <th>Category Name</th>
-                        
+                        <th>Description</th>
+                        <th>Image</th>
                   </thead>
                   <tbody>
                     @foreach($categories as $category)
                     <tr>
-                        <td>{{ $category->id }}</td>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $category->name }}</td>
-                        
+                        <td>{{ $category->description }}</td>
+                        <td>
+                              <img src="/storage/category_images/{{$category->category_image}}" alt="" width="100" height="100"> 
+
+                        </td>
                         <td> 
                             <a href="/edit-category/{{$category->id}}" class="btn btn-success">Edit</a>
                         </td>

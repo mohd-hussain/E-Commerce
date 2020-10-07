@@ -1,4 +1,6 @@
-
+<?php use App\Http\Controllers\Main\MainController; 
+$cartCount = MainController::cartCount();
+?>
 
 <!doctype html>
 <html lang="zxx">
@@ -99,7 +101,7 @@
                             <div class="dropdown cart">
                                 
                                
-                                <a style="padding-top: 10px;" href="/cart"><i class="fa fa-cart-plus" data-content="" style="margin:10px;"></i></a>
+                                <a style="padding-top: 10px;" href="/cart"><i class="fa fa-cart-plus" data-content="{{$cartCount}}" style="margin:10px;"></i></a>
                             </div>
                             
                             
@@ -110,7 +112,7 @@
                                <i class="fas fa-user-circle" data-content=""></i>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                <a class="dropdown-item" href="/login"> Log In kro bahi</a>
+                                <a class="dropdown-item" href="{{ route('login') }}"> Log In kro bahi</a>
                             </div>
                             @else
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" style="color: black;" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -141,7 +143,7 @@
                                 @endif
                             </li>
                         </div>
-
+                    </div>
                     </nav>
                 </div>
             </div>
@@ -264,202 +266,28 @@
                    <div class="product_list_slider owl-carousel">
                         <div class="single_product_list_slider">
                             <div class="row align-items-center justify-content-between"> 
-
-                             
-                                 @foreach($products  as $product)
+                    
+                                @foreach($products  as $product)
                                                 
                                 <div class="col-lg-3 col-sm-6">
                                     <div class="single_product_item">
-                                        <a href="/single-product/{{$product['id']}}"><img src="/storage/product_images/{{$product['product_image']}}" alt="">                                     
+                                        <a href="/single-product/{{ $product->id }}"><img src="/storage/product_images/{{$product->product_image}}" alt=""></a>                                     
                                         <div class="single_product_text">
-                                            <!-- <h3>{{$product->id}}</h3> -->
-                                            <h4>{{ $product['name'] }}</h4>
-                                            <h3>{{ $product['price'] }}</h3></a>
+                                            <h4>{{ $product->name }}</h4>
+                                            <h3>{{ $product->price }}</h3></a>
                                             <a href="" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                           
-                                                
-                                            </form>
                                         </div>
                                     </div>
                                 </div>
                                 @endforeach
-                             
-
-
-                                <!-- <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="{{asset('Main/img/product/product_2.png')}}" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="{{asset('Main/img/product/product_3.png')}}" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="{{asset('Main/img/product/product_4.png')}}" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="{{asset('Main/img/product/product_5.png')}}" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="{{asset('Main/img/product/product_6.png')}}" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="{{asset('Main/img/product/product_7.png')}}" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="{{asset('Main/img/product/product_8.png')}}" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div> -->
-                            <!-- </div>
-                        </div> -->
-
-
-                        <!-- <div class="single_product_list_slider">
-                            <div class="row align-items-center justify-content-between">
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="{{asset('Main/img/product/product_1.png')}}" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="{{asset('Main/img/product/product_2.png')}}" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="{{asset('Main/img/product/product_3.png')}}" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="{{asset('Main/img/product/product_4.png')}}" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="{{asset('Main/img/product/product_5.png')}}" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="{{asset('Main/img/product/product_6.png')}}" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="{{asset('Main/img/product/product_7.png')}}" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="single_product_item">
-                                        <img src="{{asset('Main/img/product/product_8.png')}}" alt="">
-                                        <div class="single_product_text">
-                                            <h4>Quartz Belt Watch</h4>
-                                            <h3>$150.00</h3>
-                                            <a href="#" class="add_cart">+ add to cart<i class="ti-heart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
+                                 
                             </div>
-                        </div> -->
-
+                        </div> 
                     </div> 
+
                 </div>
             </div> 
+
         </div>
     </section> 
 
@@ -479,38 +307,31 @@
                 </div>
             </div>
             <div class="row align-items-center justify-content-between">
+
+            @foreach($categories as $category)
+                <!-- <a class="dropdown-item" href="/category/{{ $category->id }}"> {{ $category->name }}</a> -->
+                @if ($loop->iteration % 2 != 0)
+
                 <div class="col-lg-7 col-sm-6">
                     <div class="single_feature_post_text">
-                        <h3>Electronics</h3>
+                        <h3>{{ $category->name }}</h3>
                         <p>latest Electronics products</p>
-                        <a href="#" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
-                        <img src="{{asset('Main/img/feature/feature_1.jpg')}}" alt="">
+                        <a href="/category/{{ $category->id }}" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
+                        <img src="/storage/category_images/{{$category->category_image}}" alt=""> 
                     </div>
                 </div>
+                @else 
                 <div class="col-lg-5 col-sm-6">
                     <div class="single_feature_post_text">
-                        <h3>Fashion</p>
+                        <h3>{{ $category->name }}</p>
                         <p>Latest Fashion</p>
-                        <a href="#" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
-                        <img src="{{asset('Main/img/feature/333.png') }}" alt="">
+                        <a href="/category/{{ $category->id }}" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
+                        <img src="/storage/category_images/{{$category->category_image}}" alt=""> 
                     </div>
                 </div>
-                <div class="col-lg-5 col-sm-6">
-                    <div class="single_feature_post_text">
-                        <h3>Sports</h3>
-                        <p>Latest Sports</p>
-                        <a href="#" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
-                        <img src="{{asset('Main/img/feature/sports.png')}}" alt="">
-                    </div>
-                </div>
-                <div class="col-lg-7 col-sm-6">
-                    <div class="single_feature_post_text">
-                        <h3>Furnitures</h3>
-                        <p></p>Latest in Furnitures</h3>
-                        <a href="#" class="feature_btn">EXPLORE NOW <i class="fas fa-play"></i></a>
-                        <img src="{{asset('Main/img/feature/feature_4.png')}}" alt="">
-                    </div>
-                </div>
+                
+                @endif
+            @endforeach
             </div>
         </div>
     </section>

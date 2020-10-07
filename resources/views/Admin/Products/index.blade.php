@@ -39,13 +39,22 @@
                     <label for="discount" class="col-form-label">Discount:</label>
                     <input type="integer" name="discount" class="form-control" id="discount">
                   </div>
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="category_id" class="col-form-label">Category Id:</label>
                     <input type="integer" name="category_id" class="form-control" id="category_id">
+                  </div> -->
+                  <div class="form-group">
+                    <label for="category_id" class="col-form-label">Category Id:</label>
+                    <select name="category_id" class="form-control">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
                   </div>
+
                   <div class="form-group">
                     <label for="product_image" class="col-form-label">Product Image:</label>
-                    <input type="file" name="product_image" class="form-control-file" id="product_image">
+                    <input type="file" name="product_image" class="form-control" id="product_image">
                   </div>
                   
                 

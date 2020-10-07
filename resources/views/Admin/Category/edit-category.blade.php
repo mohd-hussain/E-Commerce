@@ -17,7 +17,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                            <form action="/update-category/{{ $category->id }}" method="POST">
+                            <form action="/update-category/{{ $category->id }}" method="POST" enctype="multipart/form-data">
 
                                     {{ csrf_field() }}
                                     {{ method_field('PUT') }}
@@ -30,6 +30,14 @@
                                     <div class="form-group">
                                             <label>Name</label>
                                             <input type="text" name="categoryName" value="{{$category->name}}" class="form-control" >
+                                    </div>
+                                    <div class="form-group">
+                                            <label>Description</label>
+                                            <input type="text" name="description" value="{{$category->description}}" class="form-control" >
+                                    </div>
+                                    <div class="form-group">
+                                            <label>Image</label>
+                                            <input type="file" name="category_image" value="{{$category->category_image}}" class="form-control-file" >
                                     </div>
 
                                     <button type="submit" class="btn btn-success">Update</button>

@@ -49,6 +49,7 @@ class ProductController extends Controller
             'product_image' => 'image|nullable|max:1999',
 
         ]);
+        // dd($request);
 
         if($request->hasFile('product_image')){
             //Get filename with the extension

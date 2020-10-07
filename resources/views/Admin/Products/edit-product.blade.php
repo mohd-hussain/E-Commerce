@@ -46,7 +46,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="category_id" class="col-form-label">Category Id:</label>
-                                        <input type="integer" name="category_id" class="form-control" id="category_id" value="{{ $product->category_id }}">
+                                        <!-- <input type="integer" name="category_id" class="form-control" id="category_id" value="{{ $product->category_id }}"> -->
+                                        <select name="category_id" class="form-control" value="{{ $product->category_id }}">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label>Product Image:</label>

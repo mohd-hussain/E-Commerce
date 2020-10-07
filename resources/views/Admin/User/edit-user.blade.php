@@ -37,12 +37,12 @@
                                             <select name="usertype"  class="form-control" >
                                                 <option value="admin">Admin</option>
                                                 <option value="vendor">Vendor</option>
-                                                <option value="">None</option>
+                                                <option value="customer">Customer</option>
                                             </select>
                                     </div>
     
                                     <button type="submit" class="btn btn-success">Update</button>
-                                    <a href="/role-register" class="btn btn-danger">Cancel</a>
+                                    <a href="/users-all" class="btn btn-danger">Cancel</a>
                                 </form>
                             </div>
                         </div>
